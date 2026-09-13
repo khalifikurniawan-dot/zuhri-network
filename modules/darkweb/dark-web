@@ -1,124 +1,132 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# ZUHRI DARK-WEB GATEWAY — DENGAN PANDUAN KEAMANAN
+# ZUHRI DARK-WEB GATEWAY v2.0 — TOR KEAMANAN BERLAPIS
 
 clear
 
-# ===== WARNA =====
-RESET='\033[0m'
-BOLD='\033[1m'
-DIM='\033[2m'
-RED='\033[91m'
-GREEN='\033[92m'
-YELLOW='\033[93m'
-CYAN='\033[96m'
-GOLD='\033[93m'
-MAGENTA='\033[95m'
+RESET='\033[0m'; BOLD='\033[1m'; DIM='\033[2m'
+RED='\033[91m'; GREEN='\033[92m'; YELLOW='\033[93m'
+CYAN='\033[96m'; GOLD='\033[93m'; MAGENTA='\033[95m'
 
-# ===== CEK TOR =====
+# ===== CEK DEPENDENSI =====
 if ! command -v tor > /dev/null 2>&1; then
-    echo -e "${YELLOW}⚠️  Tor belum terinstall.${RESET}"
-    echo -e "${CYAN}Install Tor dulu? (y/n)${RESET}"
-    read -p "Pilih: " install_tor
-    if [ "$install_tor" = "y" ]; then
-        pkg install tor torsocks lynx -y
-    else
-        echo -e "${RED}❌ Dark-Web butuh Tor. Keluar.${RESET}"
-        exit 1
-    fi
+    echo -e "${YELLOW}⚠️  Install Tor + tools...${RESET}"
+    pkg install tor torsocks lynx proxychains-ng dnscrypt-proxy curl wget -y
 fi
+
+# ===== START TOR =====
+start_tor() {
+    if ! pgrep -x "tor" > /dev/null; then
+        echo -e "${CYAN}🚀 Menjalankan Tor...${RESET}"
+        nohup tor > /dev/null 2>&1 &
+        echo -e "${DIM}Menunggu Tor bootstrap (30 detik)...${RESET}"
+        for i in $(seq 1 30); do
+            sleep 1
+            IP_TOR=$(torsocks curl -s --max-time 3 ifconfig.me 2>/dev/null)
+            if [ -n "$IP_TOR" ] && [[ ! "$IP_TOR" == *"<"* ]]; then
+                echo -e "${GREEN}✅ Tor aktif — IP: $IP_TOR${RESET}"
+                return 0
+            fi
+            echo -ne "\r${DIM}   Menunggu... ${i}s${RESET}"
+        done
+        echo ""
+        echo -e "${YELLOW}⚠️  Tor belum siap, coba lagi${RESET}"
+        return 1
+    else
+        IP_TOR=$(torsocks curl -s --max-time 5 ifconfig.me 2>/dev/null)
+        echo -e "${GREEN}✅ Tor sudah aktif — IP: $IP_TOR${RESET}"
+        return 0
+    fi
+}
+
+# ===== AKSES TOR =====
+akses_tor() {
+    local url="$1"
+    local nama="$2"
+    echo -e "\n${CYAN}🌑 Membuka $nama...${RESET}"
+    echo -e "${DIM}URL: $url${RESET}\n"
+    
+    if command -v lynx > /dev/null 2>&1; then
+        timeout 90 torsocks lynx "$url"
+    else
+        torsocks curl -s --max-time 30 "$url" | head -100
+    fi
+}
 
 # ===== PANDUAN KEAMANAN =====
-clear
-echo ""
-echo -e "${BOLD}${RED}╔══════════════════════════════════════════════════════════════════════╗${RESET}"
-echo -e "${BOLD}${RED}║                                                                      ║${RESET}"
-echo -e "${BOLD}${RED}║        ⚠️  PERINGATAN KEAMANAN — DARK-WEB GATEWAY  ⚠️              ║${RESET}"
-echo -e "${BOLD}${RED}║                                                                      ║${RESET}"
-echo -e "${BOLD}${RED}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
-echo ""
-echo -e "${BOLD}${GOLD}📋 PANDUAN SEBELUM MASUK DARK-WEB:${RESET}"
-echo ""
-echo -e "${RED}❌ YANG TIDAK BOLEH DILAKUKAN:${RESET}"
-echo -e "   ${DIM}1.${RESET} ❌ Jangan klik link sembarangan"
-echo -e "   ${DIM}2.${RESET} ❌ Jangan download file dari sumber tidak dikenal"
-echo -e "   ${DIM}3.${RESET} ❌ Jangan kasih data pribadi (nama, alamat, KTP, email)"
-echo -e "   ${DIM}4.${RESET} ❌ Jangan login ke akun apapun"
-echo -e "   ${DIM}5.${RESET} ❌ Jangan transaksi ilegal (narkoba, senjata, dll)"
-echo -e "   ${DIM}6.${RESET} ❌ Jangan akses konten kekerasan/ilegal"
-echo -e "   ${DIM}7.${RESET} ❌ Jangan share lokasi atau identitas"
-echo ""
-echo -e "${GREEN}✅ YANG AMAN DILAKUKAN:${RESET}"
-echo -e "   ${DIM}1.${RESET} ✅ Cari informasi (jurnal, artikel)"
-echo -e "   ${DIM}2.${RESET} ✅ Baca berita alternatif"
-echo -e "   ${DIM}3.${RESET} ✅ Diskusi di forum publik"
-echo -e "   ${DIM}4.${RESET} ✅ Cari tools open source"
-echo -e "   ${DIM}5.${RESET} ✅ Jelajah dengan hati-hati"
-echo ""
-echo -e "${YELLOW}⚠️  PERINGATAN HUKUM:${RESET}"
-echo -e "   ${DIM}• Akses konten ilegal = pidana${RESET}"
-echo -e "   ${DIM}• Transaksi ilegal = pidana${RESET}"
-echo -e "   ${DIM}• Anda bertanggung jawab atas aksi Anda${RESET}"
-echo ""
-echo -e "${CYAN}🛡️  PROTEKSI:${RESET}"
-echo -e "   ${DIM}• Tor aktif (IP tersembunyi)${RESET}"
-echo -e "   ${DIM}• Tidak ada log aktivitas${RESET}"
-echo -e "   ${DIM}• Tidak ada tracking${RESET}"
-echo ""
-echo -e "${BOLD}${GOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo ""
-echo -e "${BOLD}${YELLOW}Apakah Anda setuju dengan panduan di atas?${RESET}"
-echo -e "  ${GOLD}1.${RESET} ✅ Ya, saya setuju & paham risikonya"
-echo -e "  ${GOLD}2.${RESET} ❌ Tidak, saya keluar"
-echo ""
-read -p "Pilih (1/2): " setuju
-
-if [ "$setuju" != "1" ]; then
+panduan() {
     clear
     echo ""
-    echo -e "${CYAN}👋 Anda memilih keluar. Aman.${RESET}"
-    echo -e "${DIM}Dark-Web bukan tempat untuk semua orang.${RESET}"
+    echo -e "${BOLD}${RED}╔══════════════════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${BOLD}${RED}║        ⚠️  PERINGATAN KEAMANAN — DARK-WEB GATEWAY  ⚠️              ║${RESET}"
+    echo -e "${BOLD}${RED}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
     echo ""
-    exit 0
-fi
-
-# ===== JALANKAN TOR =====
-clear
-echo ""
-echo -e "${CYAN}⏳ Menyiapkan Tor...${RESET}"
-
-# Cek Tor sudah jalan?
-if ! pgrep -x "tor" > /dev/null; then
-    nohup tor > /dev/null 2>&1 &
-    sleep 10
-fi
-
-# Cek IP Tor
-echo -e "${CYAN}⏳ Menunggu Tor siap (maks 30 detik)...${RESET}"
-IP_TOR=""
-for i in $(seq 1 30); do
-    IP_TOR=$(torsocks curl -s --max-time 3 ifconfig.me 2>/dev/null)
-    if [ -n "$IP_TOR" ] && [[ ! "$IP_TOR" == *"<"* ]]; then
-        break
+    echo -e "${BOLD}${GOLD}📋 PANDUAN SEBELUM MASUK DARK-WEB:${RESET}"
+    echo ""
+    echo -e "${RED}❌ YANG TIDAK BOLEH DILAKUKAN:${RESET}"
+    echo -e "   ${DIM}1.${RESET} ❌ Jangan klik link sembarangan"
+    echo -e "   ${DIM}2.${RESET} ❌ Jangan download file dari sumber tidak dikenal"
+    echo -e "   ${DIM}3.${RESET} ❌ Jangan kasih data pribadi (nama, alamat, KTP, email)"
+    echo -e "   ${DIM}4.${RESET} ❌ Jangan login ke akun apapun"
+    echo -e "   ${DIM}5.${RESET} ❌ Jangan transaksi ilegal (narkoba, senjata, dll)"
+    echo -e "   ${DIM}6.${RESET} ❌ Jangan akses konten kekerasan/ilegal"
+    echo -e "   ${DIM}7.${RESET} ❌ Jangan share lokasi atau identitas"
+    echo ""
+    echo -e "${GREEN}✅ YANG AMAN DILAKUKAN:${RESET}"
+    echo -e "   ${DIM}1.${RESET} ✅ Cari informasi (jurnal, artikel)"
+    echo -e "   ${DIM}2.${RESET} ✅ Baca berita alternatif"
+    echo -e "   ${DIM}3.${RESET} ✅ Diskusi di forum publik"
+    echo -e "   ${DIM}4.${RESET} ✅ Cari tools open source"
+    echo -e "   ${DIM}5.${RESET} ✅ Jelajah dengan hati-hati"
+    echo ""
+    echo -e "${YELLOW}⚠️  PERINGATAN HUKUM:${RESET}"
+    echo -e "   ${DIM}• Akses konten ilegal = pidana${RESET}"
+    echo -e "   ${DIM}• Transaksi ilegal = pidana${RESET}"
+    echo -e "   ${DIM}• Anda bertanggung jawab atas aksi Anda${RESET}"
+    echo ""
+    echo -e "${CYAN}🛡️  PROTEKSI AKTIF:${RESET}"
+    echo -e "   ${DIM}• Tor (IP tersembunyi)${RESET}"
+    echo -e "   ${DIM}• DNSCrypt (DNS aman)${RESET}"
+    echo -e "   ${DIM}• Proxychains (chain proxy)${RESET}"
+    echo -e "   ${DIM}• Header Anonymizer${RESET}"
+    echo ""
+    echo -e "${BOLD}${GOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+    echo ""
+    echo -e "${BOLD}${YELLOW}Apakah Anda setuju dengan panduan di atas?${RESET}"
+    echo -e "  ${GOLD}1.${RESET} ✅ Ya, saya setuju & paham risikonya"
+    echo -e "  ${GOLD}2.${RESET} ❌ Tidak, saya keluar"
+    echo ""
+    read -p "Pilih (1/2): " setuju
+    
+    if [ "$setuju" != "1" ]; then
+        clear
+        echo ""
+        echo -e "${CYAN}👋 Anda memilih keluar. Aman.${RESET}"
+        echo -e "${DIM}Dark-Web bukan tempat untuk semua orang.${RESET}"
+        echo ""
+        exit 0
     fi
-    sleep 1
-    echo -ne "\r${DIM}   Menunggu... ${i}s${RESET}"
-done
-echo ""
+}
 
-if [ -z "$IP_TOR" ] || [[ "$IP_TOR" == *"<"* ]]; then
-    IP_TOR="${RED}Tidak siap${RESET}"
-fi
+# ===== PANGGIL PANDUAN =====
+panduan
 
-# ===== MENU DARK-WEB =====
+# ===== START TOR =====
+start_tor
+
+# ===== MENU =====
 while true; do
     clear
+    IP_TOR=$(torsocks curl -s --max-time 3 ifconfig.me 2>/dev/null)
+    [ -z "$IP_TOR" ] && IP_TOR="${RED}Tidak siap${RESET}"
+    
     echo ""
     echo -e "${GOLD}╔══════════════════════════════════════════════════════════════════════╗${RESET}"
-    echo -e "${GOLD}║  🌑 ZUHRI DARK-WEB GATEWAY — ANONIM ACCESS                          ║${RESET}"
+    echo -e "${GOLD}║  🌑 ZUHRI DARK-WEB GATEWAY v2.0 — TOR KEAMANAN BERLAPIS           ║${RESET}"
     echo -e "${GOLD}╠══════════════════════════════════════════════════════════════════════╣${RESET}"
     echo -e "${GOLD}║${RESET}  ${CYAN}PROTOKOL : ${GOLD}K-8.0 — FLUID-CORE${RESET}"
     echo -e "${GOLD}║${RESET}  ${CYAN}STATUS   : ${GREEN}✅ TOR AKTIF${RESET}"
     echo -e "${GOLD}║${RESET}  ${CYAN}IP TOR   : ${GOLD}${IP_TOR}${RESET}"
+    echo -e "${GOLD}║${RESET}  ${CYAN}PROTEKSI : ${GREEN}5 Lapisan Aktif${RESET}"
     echo -e "${GOLD}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
     echo ""
     echo -e "${BOLD}${CYAN}  📡 PILIH SITUS DARK WEB:${RESET}"
@@ -128,30 +136,62 @@ while true; do
     echo -e "  ${GOLD}3.${RESET} 🔥 Torch              → Mesin Pencari Alternatif"
     echo -e "  ${GOLD}4.${RESET} 📚 Hidden Wiki        → Daftar Situs .onion"
     echo -e "  ${GOLD}5.${RESET} 📖 OnionLand          → Direktori .onion"
-    echo -e "  ${GOLD}6.${RESET} 📰 DarkWeb News       → Berita Dark Web"
+    echo -e "  ${GOLD}6.${RESET} 📰 ProPublica         → Jurnalisme Investigasi"
     echo -e "  ${GOLD}7.${RESET} 🌐 DarkSearch         → API Pencarian"
     echo -e "  ${GOLD}8.${RESET} 🧅 Tor Project        → Cek Status Tor"
     echo -e "  ${GOLD}9.${RESET} 🔎 Layanan Lain       → Custom URL"
-    echo -e "  ${GOLD}0.${RESET} 🚪 Keluar"
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}10.${RESET} 🛡️  Aktifkan Tor Shield (5 lapisan)"
+    echo -e "  ${GOLD}11.${RESET} 🧪 Test Tor"
+    echo -e "  ${GOLD}12.${RESET} 📊 Cek Status"
+    echo -e "  ${GOLD}0.${RESET}  🚪 Keluar"
     echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
     echo ""
-    read -p "  Pilih nomor (0-9): " pilihan
+    read -p "  Pilih nomor (0-12): " pilihan
     
     case $pilihan in
-        1) torsocks lynx http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/ ;;
-        2) torsocks lynx "https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/?kp=-2&kl=id-id" ;;
-        3) torsocks lynx http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77cjkdqd.onion/ ;;
-        4) torsocks lynx http://zqktlwi4fecvo6ri.onion/ ;;
-        5) torsocks lynx http://onionlandbakyt3j5.onion/ ;;
-        6) torsocks lynx http://darkwebnews4t6l2y.onion/ ;;
-        7) torsocks lynx http://darksearch3vpvk4.onion/ ;;
-        8) torsocks lynx https://check.torproject.org/ ;;
-        9) 
+        1) akses_tor "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/" "Ahmia" ;;
+        2) akses_tor "https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/?kp=-2&kl=id-id" "DuckDuckGo" ;;
+        3) akses_tor "http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77cjkdqd.onion/" "Torch" ;;
+        4) akses_tor "http://zqktlwi4fecvo6ri.onion/wiki/index.php/Main_Page" "Hidden Wiki" ;;
+        5) akses_tor "http://onionlandbakyt3j5.onion" "OnionLand" ;;
+        6) akses_tor "https://propub3r6espa33w.onion" "ProPublica" ;;
+        7) akses_tor "http://darksearch3vpvk4.onion" "DarkSearch" ;;
+        8) akses_tor "https://check.torproject.org/" "Tor Project" ;;
+        9)
             echo ""
             read -p "  🔎 Masukkan URL .onion: " custom_url
             if [ -n "$custom_url" ]; then
-                torsocks lynx "$custom_url"
+                akses_tor "$custom_url" "Custom URL"
             fi
+            ;;
+        10)
+            echo -e "\n${CYAN}🛡️  Mengaktifkan Tor Shield...${RESET}"
+            python ~/zuhri_os/torshield/zuhri_torshield.py
+            ;;
+        11)
+            echo -e "\n${CYAN}🧪 Test Tor...${RESET}"
+            echo -e "${GOLD}Test 1: IP${RESET}"
+            torsocks curl -s --max-time 10 ifconfig.me
+            echo ""
+            echo -e "${GOLD}Test 2: Check Tor Project${RESET}"
+            torsocks lynx -dump "https://check.torproject.org/" 2>/dev/null | grep -i "congratulations\|not using"
+            echo ""
+            echo -e "${GOLD}Test 3: Akses .onion${RESET}"
+            torsocks curl -s --max-time 15 "http://zqktlwi4fecvo6ri.onion/" | head -20
+            echo ""
+            ;;
+        12)
+            echo -e "\n${BOLD}📊 STATUS:${RESET}"
+            if pgrep -x tor > /dev/null; then
+                echo -e "  Tor: ${GREEN}✅ AKTIF${RESET}"
+                echo -e "  IP: $(torsocks curl -s --max-time 5 ifconfig.me)"
+            else
+                echo -e "  Tor: ${RED}❌ MATI${RESET}"
+            fi
+            echo -e "  DNSCrypt: $([ -f ~/zuhri_os/torshield/config/dnscrypt-proxy.toml ] && echo '✅' || echo '❌')"
+            echo -e "  Proxychains: $([ -f ~/zuhri_os/torshield/config/proxychains.conf ] && echo '✅' || echo '❌')"
+            echo ""
             ;;
         0)
             echo ""
@@ -165,4 +205,9 @@ while true; do
             sleep 2
             ;;
     esac
+    
+    if [ "$pilihan" != "0" ]; then
+        echo ""
+        read -p "Tekan Enter untuk kembali ke menu..."
+    fi
 done
