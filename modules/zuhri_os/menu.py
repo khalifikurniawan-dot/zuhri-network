@@ -70,6 +70,12 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🛡️  ZUHRI ECHO-CORE — POST-QUANTUM SHIELD (BARU)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}39.{RESET} {BOLD}🛡️  ZUHRI ECHO-CORE{RESET}       → {DIM}Perisai Kuantum (PQC){RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🕌 ZUHRI SPIRITUAL — ILMU HATI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
@@ -125,6 +131,12 @@ def print_menu():
 
   {GOLD}36.{RESET} {BOLD}🧬 ZUHRI FORMALISM SEARCH{RESET} → {DIM}Logika + Data + Intuisi{RESET}
   {GOLD}37.{RESET} {BOLD}🪞 CERMIN BAYANGAN{RESET}        → {DIM}Meta-pencarian tersembunyi{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🌿 ZUHRI TRADISIONAL — OBAT & JAMU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}38.{RESET} {BOLD}🌿 ZUHRI TRADISIONAL{RESET}      → {DIM}Obat & Jamu Nusantara{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🌟 ZUHRI CORE — IDENTITAS & KEAMANAN
@@ -198,7 +210,7 @@ def main():
         print_operator()
         print_menu()
         try:
-            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-37): {RESET}").strip()
+            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-39): {RESET}").strip()
             if c == "0":
                 print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
             elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
@@ -237,6 +249,8 @@ def main():
             elif c == "35": run("bash ~/zuhri_os/darkweb/dark-web")
             elif c == "36": run("bash ~/zuhri_os/formalism/zuhri-search")
             elif c == "37": run("bash ~/zuhri_os/formalism/zuhri-search")
+            elif c == "38": run("python ~/zuhri_os/tradisional/zuhri_tradisional.py")
+            elif c == "39": run("python ~/zuhri_os/echocore/zuhri_echocore.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
                 input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
