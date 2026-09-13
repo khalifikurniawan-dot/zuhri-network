@@ -1,0 +1,1 @@
+/data/data/com.termux/files/home/zuhri_os/id/zuhri_auth.py

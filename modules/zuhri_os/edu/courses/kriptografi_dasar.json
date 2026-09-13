@@ -1,0 +1,32 @@
+{
+  "title": "Kriptografi Dasar",
+  "category": "Keamanan",
+  "level": "Menengah",
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Pengenalan Kriptografi",
+      "content": "Kriptografi = seni menjaga kerahasiaan pesan. Simetris vs Asimetris."
+    },
+    {
+      "id": 2,
+      "title": "Hash Function",
+      "content": "SHA-256, MD5. Hash = sidik jari digital. Tidak bisa dikembalikan."
+    },
+    {
+      "id": 3,
+      "title": "Enkripsi Simetris",
+      "content": "AES-256. Satu kunci untuk enkripsi & dekripsi."
+    },
+    {
+      "id": 4,
+      "title": "Enkripsi Asimetris",
+      "content": "RSA, Ed25519. Public key + Private key."
+    },
+    {
+      "id": 5,
+      "title": "Tanda Tangan Digital",
+      "content": "Verifikasi keaslian pesan dengan private key."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Linux Dasar",
+  "category": "Sistem Operasi",
+  "level": "Pemula",
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Pengenalan Linux",
+      "content": "Linux adalah sistem operasi open source. Termux adalah Linux untuk Android."
+    },
+    {
+      "id": 2,
+      "title": "Perintah Dasar",
+      "content": "ls, cd, pwd, cp, mv, rm, mkdir, touch, cat"
+    },
+    {
+      "id": 3,
+      "title": "File & Permission",
+      "content": "chmod, chown, ls -la"
+    },
+    {
+      "id": 4,
+      "title": "Package Manager",
+      "content": "pkg install, pkg update, pkg search"
+    }
+  ]
+}

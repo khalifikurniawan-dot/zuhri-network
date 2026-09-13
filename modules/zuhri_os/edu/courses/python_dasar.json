@@ -1,0 +1,32 @@
+{
+  "title": "Python Dasar",
+  "category": "Programming",
+  "level": "Pemula",
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Pengenalan Python",
+      "content": "Python adalah bahasa pemrograman tingkat tinggi yang mudah dipelajari. Sintaksnya sederhana dan mirip bahasa Inggris."
+    },
+    {
+      "id": 2,
+      "title": "Variabel & Tipe Data",
+      "content": "Variabel adalah wadah untuk menyimpan data. Tipe data: int (angka bulat), float (desimal), str (teks), bool (True/False)."
+    },
+    {
+      "id": 3,
+      "title": "Operator",
+      "content": "Operator aritmatika: + - * / // % **\nOperator perbandingan: == != > < >= <=\nOperator logika: and or not"
+    },
+    {
+      "id": 4,
+      "title": "Kondisi If-Else",
+      "content": "Struktur kontrol: if kondisi:\n    aksi\nelif kondisi_lain:\n    aksi\nelse:\n    aksi"
+    },
+    {
+      "id": 5,
+      "title": "Perulangan",
+      "content": "Loop for: for i in range(5):\nLoop while: while kondisi:"
+    }
+  ]
+}
