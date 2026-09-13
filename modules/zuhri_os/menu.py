@@ -70,10 +70,10 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🤖 ZUHRI BOT KRIPTOGRAFI — BOT KRIPTO TERBARU (BARU)
+  💰 ZUHRI FINANSIAL ULTIMATE — BOT KRIPTO + FINANSIAL (BARU)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}44.{RESET} {BOLD}🤖 ZUHRI BOT KRIPTOGRAFI{RESET} → {DIM}Bot Kripto + Prediksi{RESET}
+  {GOLD}44.{RESET} {BOLD}💰 ZUHRI FINANSIAL ULTIMATE{RESET} → {DIM}Bot Kripto + Finansial Pro{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🌌 ZUHRI COMMUNITY — KOMUNITAS
@@ -291,7 +291,7 @@ def main():
             elif c == "41": run("python ~/zuhri_os/social/zuhri_social.py")
             elif c == "42": run("python ~/zuhri_os/web3hub/zuhri_web3.py")
             elif c == "43": run("python ~/zuhri_os/web4/zuhri_web4.py")
-            elif c == "44": run("python ~/zuhri_os/botkripto/zuhri_botkripto.py")
+            elif c == "44": run("python ~/zuhri_os/finansialultimate/zuhri_finansialultimate.py")
             elif c == "45": run("python ~/zuhri_os/community/zuhri_community.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
