@@ -70,16 +70,16 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌌 ZUHRI COMMUNITY — KOMUNITAS (BARU)
+  🤖 ZUHRI BOT KRIPTOGRAFI — BOT KRIPTO TERBARU (BARU)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}44.{RESET} {BOLD}🤖 ZUHRI BOT KRIPTOGRAFI{RESET} → {DIM}Bot Kripto + Prediksi{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🌌 ZUHRI COMMUNITY — KOMUNITAS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}45.{RESET} {BOLD}🌌 ZUHRI COMMUNITY{RESET}         → {DIM}Komunitas & Media Sosial{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🕌 ZUHRI SPIRITUAL ULTIMATE — PENGINGAT KEBESARAN TUHAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}44.{RESET} {BOLD}🕌 ZUHRI SPIRITUAL ULTIMATE{RESET} → {DIM}Pengingat Kebesaran Tuhan{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🤖 ZUHRI WEB4 — AI AGENT OTONOM
@@ -291,7 +291,7 @@ def main():
             elif c == "41": run("python ~/zuhri_os/social/zuhri_social.py")
             elif c == "42": run("python ~/zuhri_os/web3hub/zuhri_web3.py")
             elif c == "43": run("python ~/zuhri_os/web4/zuhri_web4.py")
-            elif c == "44": run("python ~/zuhri_os/spiritual_ultimate/zuhri_spiritual_ultimate.py")
+            elif c == "44": run("python ~/zuhri_os/botkripto/zuhri_botkripto.py")
             elif c == "45": run("python ~/zuhri_os/community/zuhri_community.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
