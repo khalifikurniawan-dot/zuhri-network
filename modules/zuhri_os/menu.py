@@ -70,7 +70,13 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI ECHO-CORE — POST-QUANTUM SHIELD (BARU)
+  🛡️  ZUHRI TOR SHIELD — PERISAI BERLAPIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}40.{RESET} {BOLD}🛡️  ZUHRI TOR SHIELD{RESET}       → {DIM}Perisai Tor berlapis (5 layer){RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🛡️  ZUHRI ECHO-CORE — POST-QUANTUM SHIELD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}39.{RESET} {BOLD}🛡️  ZUHRI ECHO-CORE{RESET}       → {DIM}Perisai Kuantum (PQC){RESET}
@@ -210,7 +216,7 @@ def main():
         print_operator()
         print_menu()
         try:
-            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-39): {RESET}").strip()
+            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-40): {RESET}").strip()
             if c == "0":
                 print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
             elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
@@ -251,6 +257,7 @@ def main():
             elif c == "37": run("bash ~/zuhri_os/formalism/zuhri-search")
             elif c == "38": run("python ~/zuhri_os/tradisional/zuhri_tradisional.py")
             elif c == "39": run("python ~/zuhri_os/echocore/zuhri_echocore.py")
+            elif c == "40": run("python ~/zuhri_os/torshield/zuhri_torshield.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
                 input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
