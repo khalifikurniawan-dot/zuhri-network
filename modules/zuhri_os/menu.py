@@ -70,7 +70,13 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI SECURITY SUITE — 4 LAPISAN KEAMANAN (BARU)
+  🌐 ZUHRI DIGITAL HUB — SOCIAL + WEB3 + WEB4 + COMMUNITY (BARU)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}41.{RESET} {BOLD}🌐 ZUHRI DIGITAL HUB{RESET}      → {DIM}Social + Web3 + Web4 + Community{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🛡️  ZUHRI SECURITY SUITE — 4 LAPISAN KEAMANAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}28.{RESET} {BOLD}🛡️  ZUHRI SECURITY SUITE{RESET}      → {DIM}Botnet + Tor + Echo-Core + Enkripsi{RESET}
@@ -80,30 +86,6 @@ def print_menu():
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}44.{RESET} {BOLD}💰 ZUHRI FINANSIAL ULTIMATE{RESET} → {DIM}Bot Kripto + Finansial Pro{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌌 ZUHRI COMMUNITY — KOMUNITAS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}45.{RESET} {BOLD}🌌 ZUHRI COMMUNITY{RESET}         → {DIM}Komunitas & Media Sosial{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🤖 ZUHRI WEB4 — AI AGENT OTONOM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}43.{RESET} {BOLD}🤖 ZUHRI WEB4{RESET}           → {DIM}AI Agent Otonom{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌐 ZUHRI WEB3 HUB — PUSAT SITUS WEB3
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}42.{RESET} {BOLD}🌐 ZUHRI WEB3 HUB{RESET}       → {DIM}Situs Web3, Media Sosial, Berita{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌐 ZUHRI SOCIAL — MEDIA SOSIAL & CHAT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}41.{RESET} {BOLD}🌐 ZUHRI SOCIAL{RESET}         → {DIM}Chat offline + Berita verified{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🕌 ZUHRI SPIRITUAL — FATWA KEHIDUPAN
@@ -267,10 +249,8 @@ def main():
             elif c == "36": run("bash ~/zuhri_os/formalism/zuhri-search")
             elif c == "37": run("bash ~/zuhri_os/formalism/zuhri-search")
             elif c == "38": run("python ~/zuhri_os/tradisional/zuhri_tradisional.py")
-            elif c == "42": run("python ~/zuhri_os/web3hub/zuhri_web3.py")
-            elif c == "43": run("python ~/zuhri_os/web4/zuhri_web4.py")
+            elif c == "41": run("python ~/zuhri_os/digitalhub/zuhri_digitalhub.py")
             elif c == "44": run("python ~/zuhri_os/finansialultimate/zuhri_finansialultimate.py")
-            elif c == "45": run("python ~/zuhri_os/community/zuhri_community.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
                 input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
