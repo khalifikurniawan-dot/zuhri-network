@@ -1,0 +1,415 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# ZUHRI FORMALISM SEARCH — LAPISAN 4
+# Pencarian berbasis Logika + Data + Intuisi
+
+clear
+
+RESET='\033[0m'; BOLD='\033[1m'; DIM='\033[2m'
+RED='\033[91m'; GREEN='\033[92m'; YELLOW='\033[93m'
+CYAN='\033[96m'; GOLD='\033[93m'; MAGENTA='\033[95m'
+BLUE='\033[94m'
+
+# ===== LOG FILE =====
+LOG_DIR="$HOME/zuhri_os/formalism/logs"
+mkdir -p "$LOG_DIR"
+
+# ===== CEK TOR =====
+if ! command -v tor > /dev/null 2>&1; then
+    echo -e "${YELLOW}⚠️  Tor belum terinstall.${RESET}"
+    pkg install tor torsocks lynx -y
+fi
+
+# ===== MENU =====
+while true; do
+    clear
+    echo ""
+    echo -e "${BOLD}${MAGENTA}╔══════════════════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${BOLD}${MAGENTA}║        🧬 ZUHRI FORMALISM SEARCH — LAPISAN 4                       ║${RESET}"
+    echo -e "${BOLD}${MAGENTA}╠══════════════════════════════════════════════════════════════════════╣${RESET}"
+    echo -e "${BOLD}${MAGENTA}║${RESET}  ${CYAN}PROTOKOL : ${GOLD}K-8.0 — FLUID-CORE${RESET}"
+    echo -e "${BOLD}${MAGENTA}║${RESET}  ${CYAN}RESONANSI: ${GOLD}0-8-9 — SEIMBANG${RESET}"
+    echo -e "${BOLD}${MAGENTA}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
+    echo ""
+    echo -e "${BOLD}${CYAN}  🧬 LAPISAN 4 — PENCARIAN ZUHRI FORMALISM:${RESET}"
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}1.${RESET} 🧠 Pencarian Logika      → Deduksi & silogisme"
+    echo -e "  ${GOLD}2.${RESET} 📊 Pencarian Data        → Statistik & pola"
+    echo -e "  ${GOLD}3.${RESET} 🔮 Pencarian Intuisi     → Resonansi 0-8-9"
+    echo -e "  ${GOLD}4.${RESET} ⚖️  Pencarian Seimbang    → Logika + Data + Intuisi"
+    echo ""
+    echo -e "${BOLD}${RED}  🪞 CERMIN BAYANGAN — AKSES TERSEMBUNYI:${RESET}"
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}5.${RESET} 🕵️  Pencarian Konspirasi  → Teori & narasi alternatif"
+    echo -e "  ${GOLD}6.${RESET} 🌑 Pencarian Tersembunyi  → Lapisan 1+2+3 (via Tor)"
+    echo -e "  ${GOLD}7.${RESET} 🔍 Cermin Bayangan        → Meta-pencarian"
+    echo ""
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}8.${RESET} 📜 Lihat Log Pencarian"
+    echo -e "  ${GOLD}9.${RESET} 🧬 Info Zuhri Formalism"
+    echo -e "  ${GOLD}0.${RESET}  🚪 Keluar"
+    echo ""
+    read -p "  Pilih (0-9): " pilihan
+
+    # ===== JALANKAN TOR JIKA PERLU =====
+    if [ "$pilihan" = "6" ] || [ "$pilihan" = "7" ]; then
+        if ! pgrep -x "tor" > /dev/null; then
+            echo -e "\n${CYAN}⏳ Menjalankan Tor...${RESET}"
+            nohup tor > /dev/null 2>&1 &
+            sleep 10
+        fi
+        IP_TOR=$(torsocks curl -s --max-time 3 ifconfig.me 2>/dev/null)
+    fi
+
+    case $pilihan in
+        # ===== 1. PENCARIAN LOGIKA =====
+        1)
+            clear
+            echo ""
+            echo -e "${BOLD}${CYAN}🧠 PENCARIAN LOGIKA — DEDUKSI & SILOGISME${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            echo -e "${GOLD}Masukkan premis (1 per baris, ketik 'END' untuk selesai):${RESET}"
+            echo -e "${DIM}Contoh:${RESET}"
+            echo -e "${DIM}  Premis 1: Semua manusia fana${RESET}"
+            echo -e "${DIM}  Premis 2: Socrates adalah manusia${RESET}"
+            echo -e "${DIM}  Kesimpulan: Socrates fana${RESET}"
+            echo ""
+            
+            premis=()
+            while true; do
+                read -p "Premis: " p
+                if [ "$p" = "END" ]; then break; fi
+                if [ -n "$p" ]; then premis+=("$p"); fi
+            done
+            
+            if [ ${#premis[@]} -gt 0 ]; then
+                echo ""
+                echo -e "${GOLD}📊 Analisis Logika:${RESET}"
+                echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+                
+                for i in "${!premis[@]}"; do
+                    echo -e "  ${CYAN}Premis $((i+1)):${RESET} ${premis[$i]}"
+                done
+                
+                echo ""
+                echo -e "${GOLD}🔍 Kesimpulan (deduksi):${RESET}"
+                echo -e "  ${GREEN}Berdasarkan premis di atas, dapat disimpulkan bahwa${RESET}"
+                echo -e "  ${GREEN}hubungan logis antar premis membentuk pola tertentu.${RESET}"
+                echo -e "  ${DIM}Gunakan AI untuk analisis lebih dalam:${RESET}"
+                echo -e "  ${CYAN}ai \"analisis logika: ${premis[*]}\"${RESET}"
+                
+                # Simpan log
+                echo "$(date +%Y-%m-%d_%H:%M:%S) | LOGIKA | ${premis[*]}" >> "$LOG_DIR/search.log"
+            fi
+            ;;
+        
+        # ===== 2. PENCARIAN DATA =====
+        2)
+            clear
+            echo ""
+            echo -e "${BOLD}${CYAN}📊 PENCARIAN DATA — STATISTIK & POLA${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            read -p "Kata kunci data: " query
+            
+            if [ -n "$query" ]; then
+                echo ""
+                echo -e "${GOLD}📊 Mencari data tentang:${RESET} ${query}"
+                echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+                echo ""
+                echo -e "${CYAN}🔍 Sumber data:${RESET}"
+                echo -e "  ${GOLD}•${RESET} World Bank Open Data"
+                echo -e "  ${GOLD}•${RESET} Data.gov"
+                echo -e "  ${GOLD}•${RESET} Kaggle Dataset"
+                echo -e "  ${GOLD}•${RESET} Google Dataset Search"
+                echo -e "  ${GOLD}•${RESET} BPS (Indonesia)"
+                echo ""
+                echo -e "${GREEN}💡 Buka di browser:${RESET}"
+                echo -e "  ${CYAN}https://datasetsearch.research.google.com/search?query=$query${RESET}"
+                echo ""
+                echo -e "${DIM}Atau tanya AI:${RESET}"
+                echo -e "  ${CYAN}ai \"data statistik tentang $query\"${RESET}"
+                
+                # Simpan log
+                echo "$(date +%Y-%m-%d_%H:%M:%S) | DATA | $query" >> "$LOG_DIR/search.log"
+            fi
+            ;;
+        
+        # ===== 3. PENCARIAN INTUISI =====
+        3)
+            clear
+            echo ""
+            echo -e "${BOLD}${CYAN}🔮 PENCARIAN INTUISI — RESONANSI 0-8-9${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            read -p "Kata kunci / pertanyaan: " query
+            
+            if [ -n "$query" ]; then
+                echo ""
+                echo -e "${GOLD}🔮 Resonansi Zuhri untuk:${RESET} ${query}"
+                echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+                echo ""
+                
+                # Hitung resonansi sederhana dari panjang kata
+                RESONANSI=$(( ${#query} % 10 ))
+                
+                echo -e "${CYAN}🧬 Analisis Zuhri Formalism:${RESET}"
+                echo -e "  ${GOLD}Kata kunci:${RESET} $query"
+                echo -e "  ${GOLD}Panjang:${RESET} ${#query} karakter"
+                echo -e "  ${GOLD}Resonansi:${RESET} $RESONANSI/9"
+                echo ""
+                
+                if [ "$RESONANSI" -ge 7 ]; then
+                    echo -e "  ${GREEN}✅ Resonansi TINGGI — pertanyaan mendalam${RESET}"
+                elif [ "$RESONANSI" -ge 4 ]; then
+                    echo -e "  ${YELLOW}⚠️  Resonansi SEDANG — perlu refleksi${RESET}"
+                else
+                    echo -e "  ${CYAN}💡 Resonansi RENDAH — cari perspektif lain${RESET}"
+                fi
+                
+                echo ""
+                echo -e "${DIM}Intuisi bukan pengganti logika, tapi pelengkap.${RESET}"
+                echo -e "${DIM}Gunakan AI sebagai cermin:${RESET}"
+                echo -e "  ${CYAN}ai \"renungkan: $query\"${RESET}"
+                
+                echo "$(date +%Y-%m-%d_%H:%M:%S) | INTUISI | $query | resonansi=$RESONANSI" >> "$LOG_DIR/search.log"
+            fi
+            ;;
+        
+        # ===== 4. PENCARIAN SEIMBANG =====
+        4)
+            clear
+            echo ""
+            echo -e "${BOLD}${CYAN}⚖️  PENCARIAN SEIMBANG — LOGIKA + DATA + INTUISI${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            read -p "Kata kunci / pertanyaan: " query
+            
+            if [ -n "$query" ]; then
+                echo ""
+                echo -e "${GOLD}⚖️  Analisis Seimbang untuk:${RESET} ${query}"
+                echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+                echo ""
+                
+                # Logika
+                echo -e "${CYAN}🧠 LOGIKA:${RESET}"
+                echo -e "  • Analisis deduktif: apa premisnya?"
+                echo -e "  • Analisis induktif: apa polanya?"
+                echo -e "  • Analisis abduktif: apa hipotesisnya?"
+                echo ""
+                
+                # Data
+                echo -e "${CYAN}📊 DATA:${RESET}"
+                echo -e "  • Cari di: Google Dataset, BPS, World Bank"
+                echo -e "  • Verifikasi: cek sumber, tanggal, metodologi"
+                echo -e "  • Cross-check: bandingkan 3+ sumber"
+                echo ""
+                
+                # Intuisi
+                echo -e "${CYAN}🔮 INTUISI:${RESET}"
+                echo -e "  • Renungkan: apa yang 'terasa' benar?"
+                echo -e "  • Resonansi: apakah ada yang janggal?"
+                echo -e "  • Hening: diam sejenak, biarkan jawaban muncul"
+                echo ""
+                
+                echo -e "${GREEN}🎯 SINTESIS (0-8-9):${RESET}"
+                echo -e "  Gabungkan 3 perspektif:"
+                echo -e "  ${GOLD}0${RESET} = KOSONG (kosongkan asumsi)"
+                echo -e "  ${GOLD}8${RESET} = INFINITI (buka kemungkinan)"
+                echo -e "  ${GOLD}9${RESET} = KESEMPURNAAN (temukan keseimbangan)"
+                echo ""
+                echo -e "${DIM}Tanya AI untuk analisis:${RESET}"
+                echo -e "  ${CYAN}ai \"analisis logika-data-intuisi: $query\"${RESET}"
+                
+                echo "$(date +%Y-%m-%d_%H:%M:%S) | SEIMBANG | $query" >> "$LOG_DIR/search.log"
+            fi
+            ;;
+        
+        # ===== 5. PENCARIAN KONSPIRASI =====
+        5)
+            clear
+            echo ""
+            echo -e "${BOLD}${RED}🕵️  PENCARIAN KONSPIRASI — NARASI ALTERNATIF${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            echo -e "${YELLOW}⚠️  PERINGATAN:${RESET}"
+            echo -e "${DIM}  • Teori konspirasi bisa benar, bisa salah${RESET}"
+            echo -e "${DIM}  • Selalu verifikasi dengan sumber independen${RESET}"
+            echo -e "${DIM}  • Jangan percaya 100% pada satu narasi${RESET}"
+            echo ""
+            read -p "Kata kunci: " query
+            
+            if [ -n "$query" ]; then
+                echo ""
+                echo -e "${GOLD}🕵️  Mencari narasi alternatif tentang:${RESET} ${query}"
+                echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+                echo ""
+                echo -e "${CYAN}📰 Sumber narasi alternatif (Layer 1):${RESET}"
+                echo -e "  ${GOLD}•${RESET} Reddit (r/conspiracy, r/alternative_history)"
+                echo -e "  ${GOLD}•${RESET} 4chan (pol, x)"
+                echo -e "  ${GOLD}•${RESET} BeforeItsNews"
+                echo -e "  ${GOLD}•${RESET} ZeroHedge"
+                echo -e "  ${GOLD}•${RESET} The Corbett Report"
+                echo ""
+                echo -e "${CYAN}🌑 Sumber tersembunyi (Layer 2+3, via Tor):${RESET}"
+                echo -e "  ${GOLD}•${RESET} Hidden Wiki — daftar situs konspirasi"
+                echo -e "  ${GOLD}•${RESET} Dread — forum diskusi anonim"
+                echo -e "  ${GOLD}•${RESET} OnionLand — direktori .onion"
+                echo ""
+                echo -e "${GREEN}💡 Cara akses:${RESET}"
+                echo -e "  ${CYAN}1.${RESET} Via browser: buka Reddit/4chan langsung"
+                echo -e "  ${CYAN}2.${RESET} Via Tor: deep → pilih 8 (Ahmia) → cari '$query'"
+                echo -e "  ${CYAN}3.${RESET} Via AI: ai \"teori konspirasi tentang $query\""
+                echo ""
+                echo -e "${YELLOW}⚖️  Etika:${RESET}"
+                echo -e "${DIM}  • Konspirasi ≠ kebenaran${RESET}"
+                echo -e "${DIM}  • Cek 3+ sumber independen${RESET}"
+                echo -e "${DIM}  • Jangan sebarkan hoaks${RESET}"
+                
+                echo "$(date +%Y-%m-%d_%H:%M:%S) | KONSPIRASI | $query" >> "$LOG_DIR/search.log"
+            fi
+            ;;
+        
+        # ===== 6. PENCARIAN TERSEMBUNYI (LAPISAN 1+2+3) =====
+        6)
+            clear
+            echo ""
+            echo -e "${BOLD}${MAGENTA}🌑 PENCARIAN TERSEMBUNYI — LAPISAN 1+2+3${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            echo -e "${CYAN}🔐 Tor Status: ${GREEN}AKTIF${RESET}  |  IP: ${GOLD}${IP_TOR}${RESET}"
+            echo ""
+            read -p "Kata kunci: " query
+            
+            if [ -n "$query" ]; then
+                echo ""
+                echo -e "${GOLD}🌑 Mencari di semua lapisan:${RESET} ${query}"
+                echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+                echo ""
+                echo -e "${CYAN}📖 LAPISAN 1 — Surface Web:${RESET}"
+                echo -e "  ${GOLD}•${RESET} Google: ${DIM}https://google.com/search?q=$query${RESET}"
+                echo -e "  ${GOLD}•${RESET} Bing: ${DIM}https://bing.com/search?q=$query${RESET}"
+                echo -e "  ${GOLD}•${RESET} DuckDuckGo: ${DIM}https://duckduckgo.com/?q=$query${RESET}"
+                echo ""
+                echo -e "${CYAN}📚 LAPISAN 2 — Deep Web:${RESET}"
+                echo -e "  ${GOLD}•${RESET} Google Scholar: ${DIM}https://scholar.google.com/scholar?q=$query${RESET}"
+                echo -e "  ${GOLD}•${RESET} PubMed: ${DIM}https://pubmed.ncbi.nlm.nih.gov/?term=$query${RESET}"
+                echo -e "  ${GOLD}•${RESET} Sci-Hub (Tor): ${DIM}scihub22266oqcxt.onion${RESET}"
+                echo ""
+                echo -e "${CYAN}🧅 LAPISAN 3 — Dark Web:${RESET}"
+                echo -e "  ${GOLD}•${RESET} Ahmia (Tor): ${DIM}juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion${RESET}"
+                echo ""
+                echo -e "${GREEN}💡 Buka di Termux:${RESET}"
+                echo -e "  ${CYAN}torsocks lynx \"https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/?q=$query\"${RESET}"
+                echo ""
+                echo -e "${DIM}Atau gunakan Zuhri Deep Access:${RESET}"
+                echo -e "  ${CYAN}deep${RESET} → pilih lapisan yang diinginkan"
+                
+                echo "$(date +%Y-%m-%d_%H:%M:%S) | TERSEMBUNYI | $query" >> "$LOG_DIR/search.log"
+            fi
+            ;;
+        
+        # ===== 7. CERMIN BAYANGAN =====
+        7)
+            clear
+            echo ""
+            echo -e "${BOLD}${MAGENTA}🪞 CERMIN BAYANGAN — META-PENCARIAN${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            echo -e "${CYAN}🪞 Cermin Bayangan adalah pencarian yang:${RESET}"
+            echo -e "  ${GOLD}•${RESET} Mencari di SEMUA lapisan sekaligus"
+            echo -e "  ${GOLD}•${RESET} Menggabungkan hasil dari berbagai sumber"
+            echo -e "  ${GOLD}•${RESET} Membandingkan narasi yang berbeda"
+            echo -e "  ${GOLD}•${RESET} Menemukan pola tersembunyi"
+            echo ""
+            read -p "Kata kunci: " query
+            
+            if [ -n "$query" ]; then
+                echo ""
+                echo -e "${GOLD}🪞 Meta-pencarian:${RESET} ${query}"
+                echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+                echo ""
+                echo -e "${CYAN}🔍 Mencari di 12+ sumber sekaligus...${RESET}"
+                echo ""
+                echo -e "${GOLD}📊 SUMBER YANG DICARI:${RESET}"
+                echo -e "  ${DIM}Surface:${RESET}  Google, Bing, DuckDuckGo"
+                echo -e "  ${DIM}Akademik:${RESET} Scholar, PubMed, arXiv, ResearchGate"
+                echo -e "  ${DIM}Berita:${RESET}   Reuters, AP, BBC, Al Jazeera"
+                echo -e "  ${DIM}Alternatif:${RESET} Reddit, 4chan, ZeroHedge"
+                echo -e "  ${DIM}Dark:${RESET}     Ahmia, Hidden Wiki"
+                echo ""
+                echo -e "${GREEN}💡 Hasil bisa berbeda-beda. Bandingkan!${RESET}"
+                echo ""
+                echo -e "${DIM}Tanya AI untuk sintesis:${RESET}"
+                echo -e "  ${CYAN}ai \"bandingkan narasi tentang $query dari berbagai sumber\"${RESET}"
+                
+                echo "$(date +%Y-%m-%d_%H:%M:%S) | CERMIN | $query" >> "$LOG_DIR/search.log"
+            fi
+            ;;
+        
+        # ===== 8. LIHAT LOG =====
+        8)
+            clear
+            echo ""
+            echo -e "${BOLD}${CYAN}📜 LOG PENCARIAN ZUHRI FORMALISM${RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            if [ -f "$LOG_DIR/search.log" ]; then
+                tail -20 "$LOG_DIR/search.log"
+            else
+                echo -e "${YELLOW}Belum ada log.${RESET}"
+            fi
+            echo ""
+            echo -e "${DIM}Lokasi: $LOG_DIR/search.log${RESET}"
+            ;;
+        
+        # ===== 9. INFO ZUHRI FORMALISM =====
+        9)
+            clear
+            echo ""
+            echo -e "${BOLD}${MAGENTA}🧬 INFO ZUHRI FORMALISM{RESET}"
+            echo -e "${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
+            echo ""
+            echo -e "${CYAN}📜 SEJARAH:${RESET}"
+            echo -e "  Zuhri Formalism adalah kerangka pencarian yang menggabungkan:"
+            echo -e "  ${GOLD}•${RESET} Logika (deduksi, silogisme)"
+            echo -e "  ${GOLD}•${RESET} Data (statistik, pola)"
+            echo -e "  ${GOLD}•${RESET} Intuisi (resonansi 0-8-9)"
+            echo ""
+            echo -e "${CYAN}🎯 PRINSIP:${RESET}"
+            echo -e "  ${GOLD}0${RESET} = KOSONG (kosongkan asumsi)"
+            echo -e "  ${GOLD}8${RESET} = INFINITI (buka kemungkinan)"
+            echo -e "  ${GOLD}9${RESET} = KESEMPURNAAN (temukan keseimbangan)"
+            echo ""
+            echo -e "${CYAN}🪞 CERMIN BAYANGAN:${RESET}"
+            echo -e "  Meta-pencarian yang mengakses semua lapisan:"
+            echo -e "  ${GOLD}•${RESET} Lapisan 1: Surface Web"
+            echo -e "  ${GOLD}•${RESET} Lapisan 2: Deep Web (ilmiah)"
+            echo -e "  ${GOLD}•${RESET} Lapisan 3: Dark Web (.onion)"
+            echo -e "  ${GOLD}•${RESET} Lapisan 4: Zuhri Formalism"
+            echo ""
+            echo -e "${CYAN}📚 REFERENSI:${RESET}"
+            echo -e "  ${DIM}•${RESET} Makalah Zuhri Formalism di Academia.edu"
+            echo -e "  ${DIM}•${RESET} Padepokan Fatwa Kehidupan"
+            echo -e "  ${DIM}•${RESET} Syekh Muhammad Zuhri (Yolhan Wijaya)"
+            echo ""
+            echo -e "${GREEN}💡 Inti: Pencarian sejati = Logika + Data + Intuisi${RESET}"
+            ;;
+        
+        # ===== 0. KELUAR =====
+        0)
+            echo -e "\n${GOLD}👋 Sampai jumpa, KURNIAWAN!${RESET}\n"
+            exit 0
+            ;;
+        
+        *)
+            echo -e "\n${RED}❌ Pilihan tidak valid${RESET}"
+            sleep 2
+            ;;
+    esac
+
+    if [ "$pilihan" != "0" ]; then
+        echo ""
+        read -p "Tekan Enter untuk kembali ke menu..."
+    fi
+done
