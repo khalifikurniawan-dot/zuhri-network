@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
-# ZUHRI DEEP ACCESS v2.0 — LAPISAN 2 & 3
-# Dengan Tor Shield + Keamanan Berlapis
+# ZUHRI DEEP ACCESS v2.1 — LAPISAN 1, 2, 3
+# Fix: timeout + fallback browser
 
 clear
 
@@ -9,93 +9,167 @@ RED='\033[91m'; GREEN='\033[92m'; YELLOW='\033[93m'
 CYAN='\033[96m'; GOLD='\033[93m'; MAGENTA='\033[95m'
 
 # ===== CEK DEPENDENSI =====
-if ! command -v tor > /dev/null 2>&1; then
-    echo -e "${YELLOW}⚠️  Install dependensi dulu...${RESET}"
-    pkg install tor torsocks lynx proxychains-ng dnscrypt-proxy curl wget -y
+echo -e "${CYAN}⏳ Cek dependensi...${RESET}"
+
+MISSING=""
+command -v tor > /dev/null 2>&1 || MISSING="$MISSING tor"
+command -v torsocks > /dev/null 2>&1 || MISSING="$MISSING torsocks"
+command -v lynx > /dev/null 2>&1 || MISSING="$MISSING lynx"
+command -v curl > /dev/null 2>&1 || MISSING="$MISSING curl"
+
+if [ -n "$MISSING" ]; then
+    echo -e "${YELLOW}⚠️  Dependensi belum lengkap:$MISSING${RESET}"
+    read -p "Install sekarang? (y/n): " install
+    if [ "$install" = "y" ]; then
+        pkg install tor torsocks lynx curl -y
+    else
+        echo -e "${RED}❌ Tidak bisa lanjut tanpa dependensi${RESET}"
+        exit 1
+    fi
 fi
 
-# ===== JALANKAN TOR (OPSIONAL) =====
-start_tor() {
+# ===== FUNGSI BUKA URL (FALLBACK) =====
+buka_url() {
+    local url="$1"
+    local nama="$2"
+    local pakai_tor="$3"  # "ya" atau "tidak"
+    
+    echo -e "\n${CYAN}🌐 Membuka $nama...${RESET}"
+    echo -e "${DIM}URL: $url${RESET}\n"
+    
+    # Coba lynx dulu dengan timeout
+    if command -v lynx > /dev/null 2>&1; then
+        echo -e "${DIM}⏳ Menggunakan lynx (timeout 30s)...${RESET}"
+        if [ "$pakai_tor" = "ya" ]; then
+            timeout 30 torsocks lynx -accept_all_cookies -dump "$url" 2>/dev/null | head -50
+        else
+            timeout 30 lynx -accept_all_cookies -dump "$url" 2>/dev/null | head -50
+        fi
+        
+        if [ $? -ne 0 ]; then
+            echo -e "${YELLOW}⚠️  Lynx gagal, pakai browser...${RESET}"
+            termux-open-url "$url" 2>/dev/null
+        fi
+    else
+        # Fallback: browser
+        termux-open-url "$url" 2>/dev/null
+    fi
+}
+
+# ===== FUNGSI AKSES LAYER 1 (SURFACE WEB) =====
+akses_layer1() {
+    local url="$1"
+    local nama="$2"
+    echo -e "\n${CYAN}🌐 Membuka $nama di browser...${RESET}"
+    echo -e "${DIM}URL: $url${RESET}\n"
+    termux-open-url "$url" 2>/dev/null
+    echo -e "${GREEN}✅ Dibuka di browser HP${RESET}\n"
+}
+
+# ===== FUNGSI AKSES LAYER 2 (DEEP WEB) =====
+akses_layer2() {
+    local url="$1"
+    local nama="$2"
+    echo -e "\n${CYAN}🌐 Membuka $nama...${RESET}"
+    echo -e "${DIM}URL: $url${RESET}\n"
+    
+    # Layer 2 umumnya bisa diakses langsung (surface) atau via Tor
+    termux-open-url "$url" 2>/dev/null
+    echo -e "${GREEN}✅ Dibuka di browser HP${RESET}"
+    echo -e "${DIM}💡 Kalau diblokir, pakai Tor Shield (menu 18)${RESET}\n"
+}
+
+# ===== FUNGSI AKSES LAYER 3 (DARK WEB) =====
+akses_layer3() {
+    local url="$1"
+    local nama="$2"
+    echo -e "\n${CYAN}🧅 Membuka $nama via Tor...${RESET}"
+    echo -e "${DIM}URL: $url${RESET}\n"
+    
+    # Pastikan Tor jalan
     if ! pgrep -x "tor" > /dev/null; then
-        echo -e "${CYAN}🚀 Menjalankan Tor...${RESET}"
+        echo -e "${YELLOW}⚠️  Tor belum jalan. Menjalankan...${RESET}"
+        nohup tor > /dev/null 2>&1 &
+        echo -e "${DIM}Menunggu Tor bootstrap (15 detik)...${RESET}"
+        sleep 15
+    fi
+    
+    # Test Tor
+    IP=$(torsocks curl -s --max-time 5 ifconfig.me 2>/dev/null)
+    if [ -z "$IP" ] || [[ "$IP" == *"<"* ]]; then
+        echo -e "${RED}❌ Tor belum siap. Coba lagi nanti.${RESET}"
+        echo -e "${DIM}Jalankan manual: tor &${RESET}\n"
+        return 1
+    fi
+    
+    echo -e "${GREEN}✅ Tor IP: $IP${RESET}\n"
+    echo -e "${DIM}⏳ Mengakses .onion (timeout 60s)...${RESET}\n"
+    
+    # Coba lynx via Tor
+    if command -v lynx > /dev/null 2>&1; then
+        timeout 60 torsocks lynx -accept_all_cookies "$url"
+    else
+        # Fallback: buka via browser (tidak bisa .onion langsung)
+        echo -e "${YELLOW}⚠️  lynx tidak ada. Buka Tor Browser manual.${RESET}"
+    fi
+}
+
+# ===== TEST TOR =====
+test_tor() {
+    clear
+    echo -e "\n${CYAN}🧪 TEST KONEKSI TOR${RESET}\n"
+    
+    if ! pgrep -x "tor" > /dev/null; then
+        echo -e "${YELLOW}⚠️  Tor belum jalan. Menjalankan...${RESET}"
         nohup tor > /dev/null 2>&1 &
         sleep 10
     fi
-    IP_TOR=$(torsocks curl -s --max-time 5 ifconfig.me 2>/dev/null)
-    if [ -n "$IP_TOR" ] && [[ ! "$IP_TOR" == *"<"* ]]; then
-        echo -e "${GREEN}✅ IP Tor: $IP_TOR${RESET}"
-    else
-        echo -e "${YELLOW}⚠️  Tor belum siap${RESET}"
-    fi
-}
-
-# ===== FUNGSI AKSES TOR =====
-akses_tor() {
-    local url="$1"
-    local nama="$2"
-    echo -e "\n${CYAN}🌐 Membuka $nama...${RESET}"
-    echo -e "${DIM}URL: $url${RESET}\n"
     
-    # Coba lynx dulu (teks)
-    if command -v lynx > /dev/null 2>&1; then
-        timeout 60 torsocks lynx "$url"
+    echo -e "${DIM}Test 1: Cek IP Tor...${RESET}"
+    IP=$(torsocks curl -s --max-time 10 ifconfig.me 2>/dev/null)
+    if [ -n "$IP" ] && [[ ! "$IP" == *"<"* ]]; then
+        echo -e "${GREEN}✅ IP Tor: $IP${RESET}"
     else
-        # Fallback: curl
-        torsocks curl -s --max-time 30 "$url" | head -100
+        echo -e "${RED}❌ Tor tidak merespons${RESET}"
     fi
-}
-
-# ===== FUNGSI AKSES INTERNET BIASA =====
-akses_internet() {
-    local url="$1"
-    local nama="$2"
-    echo -e "\n${CYAN}🌐 Membuka $nama...${RESET}"
-    echo -e "${DIM}URL: $url${RESET}\n"
     
-    if command -v lynx > /dev/null 2>&1; then
-        timeout 60 lynx "$url"
+    echo -e "\n${DIM}Test 2: Check Tor Project...${RESET}"
+    HASIL=$(torsocks curl -s --max-time 10 "https://check.torproject.org/" 2>/dev/null | grep -o "Congratulations\|not using" | head -1)
+    if [ "$HASIL" = "Congratulations" ]; then
+        echo -e "${GREEN}✅ Tor terkonfirmasi!${RESET}"
     else
-        curl -s --max-time 30 "$url" | head -100
+        echo -e "${YELLOW}⚠️  Tor belum terkonfirmasi${RESET}"
     fi
+    
+    echo ""
+    read -p "Tekan Enter untuk kembali..."
 }
 
 # ===== MENU =====
 while true; do
     clear
     echo ""
-    echo -e "${BOLD}${MAGENTA}╔══════════════════════════════════════════════════════════════════════╗${RESET}"
-    echo -e "${BOLD}${MAGENTA}║        🌐 ZUHRI DEEP ACCESS v2.0 — LAPISAN 2 & 3                  ║${RESET}"
-    echo -e "${BOLD}${MAGENTA}║        Dengan Tor Shield + Keamanan Berlapis                      ║${RESET}"
-    echo -e "${BOLD}${MAGENTA}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
+    echo -e "${BOLD}${MAGENTA}╔══════════════════════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${BOLD}${MAGENTA}║        🌐 ZUHRI DEEP ACCESS v2.1 — LAPISAN 1, 2, 3                       ║${RESET}"
+    echo -e "${BOLD}{MAGENTA}╚══════════════════════════════════════════════════════════════════════════╝${RESET}"
     echo ""
-    echo -e "${BOLD}${CYAN}  📚 LAPISAN 1 — SURFACE WEB (Bisa diakses langsung):${RESET}"
-    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
-    echo -e "  ${GOLD}1.${RESET} 🔍 Google           → Mesin pencari"
-    echo -e "  ${GOLD}2.${RESET} 📚 Wikipedia        → Ensiklopedia bebas"
-    echo -e "  ${GOLD}3.${RESET} 📰 Berita           → CNN, BBC, Al Jazeera"
-    echo -e "  ${GOLD}4.${RESET} 🎥 YouTube          → Video"
-    echo -e "  ${GOLD}5.${RESET} 📧 Email            → Gmail, Outlook"
+    echo -e "${BOLD}${CYAN}  📚 LAPISAN 1 — SURFACE WEB (Buka di browser):${RESET}"
+    echo -e "  ${GOLD}1.${RESET} 🔍 Google        ${GOLD}2.${RESET} 📚 Wikipedia"
+    echo -e "  ${GOLD}3.${RESET} 📰 Berita        ${GOLD}4.${RESET} 🎥 YouTube"
+    echo -e "  ${GOLD}5.${RESET} 📧 Gmail"
     echo ""
-    echo -e "${BOLD}${CYAN}  📚 LAPISAN 2 — DEEP WEB (Ilmiah & Legal):${RESET}"
-    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
-    echo -e "  ${GOLD}6.${RESET} 🔬 Google Scholar   → Pencarian ilmiah"
-    echo -e "  ${GOLD}7.${RESET} 🧬 PubMed           → Biomedis"
-    echo -e "  ${GOLD}8.${RESET} 📄 arXiv            → Fisika & matematika"
-    echo -e "  ${GOLD}9.${RESET} 📖 ResearchGate     → Jaringan peneliti"
-    echo -e "  ${GOLD}10.${RESET} 📚 Library Genesis → Buku (via Tor)"
-    echo -e "  ${GOLD}11.${RESET} 🔬 Sci-Hub         → Jurnal (via Tor)"
+    echo -e "${BOLD}${CYAN}  📚 LAPISAN 2 — DEEP WEB (Ilmiah):${RESET}"
+    echo -e "  ${GOLD}6.${RESET} 🔬 Google Scholar ${GOLD}7.${RESET} 🧬 PubMed"
+    echo -e "  ${GOLD}8.${RESET} 📄 arXiv          ${GOLD}9.${RESET} 📖 ResearchGate"
+    echo -e "  ${GOLD}10.${RESET} 📚 Library Genesis ${GOLD}11.${RESET} 🔬 Sci-Hub"
     echo ""
     echo -e "${BOLD}${MAGENTA}  🌑 LAPISAN 3 — DARK WEB (Anonim via Tor):${RESET}"
-    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
-    echo -e "  ${GOLD}12.${RESET} 🧅 ZeroNet         → Web terdesentralisasi"
-    echo -e "  ${GOLD}13.${RESET} 📰 ProPublica      → Jurnalisme investigasi"
-    echo -e "  ${GOLD}14.${RESET} 🔍 Ahmia           → Pencarian .onion"
-    echo -e "  ${GOLD}15.${RESET} 📚 Hidden Wiki     → Daftar situs .onion"
-    echo -e "  ${GOLD}16.${RESET} 📖 OnionLand       → Direktori .onion"
-    echo -e "  ${GOLD}17.${RESET} 🌐 Custom .onion   → URL manual"
+    echo -e "  ${GOLD}12.${RESET} 🧅 ZeroNet       ${GOLD}13.${RESET} 📰 ProPublica"
+    echo -e "  ${GOLD}14.${RESET} 🔍 Ahmia         ${GOLD}15.${RESET} 📚 Hidden Wiki"
+    echo -e "  ${GOLD}16.${RESET} 📖 OnionLand     ${GOLD}17.${RESET} 🌐 Custom .onion"
     echo ""
-    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
-    echo -e "  ${GOLD}18.${RESET} 🛡️  Aktifkan Tor Shield (5 lapisan)"
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}18.${RESET} 🛡️  Aktifkan Tor Shield"
     echo -e "  ${GOLD}19.${RESET} 🧪 Test Tor"
     echo -e "  ${GOLD}20.${RESET} 📊 Cek Status"
     echo -e "  ${GOLD}0.${RESET}  🚪 Keluar"
@@ -103,175 +177,69 @@ while true; do
     read -p "  Pilih (0-20): " pilihan
 
     case $pilihan in
-        # ===== LAPISAN 1 — SURFACE WEB =====
-        1)
-            read -p "🔍 Query: " q
-            [ -n "$q" ] && akses_internet "https://www.google.com/search?q=$q" "Google"
-            ;;
-        2)
-            read -p "📚 Query: " q
-            [ -n "$q" ] && akses_internet "https://id.wikipedia.org/wiki/$q" "Wikipedia"
-            ;;
-        3)
-            echo -e "\n${CYAN}Pilih berita:${RESET}"
-            echo -e "  ${GOLD}1.${RESET} CNN Indonesia"
-            echo -e "  ${GOLD}2.${RESET} BBC News"
-            echo -e "  ${GOLD}3.${RESET} Al Jazeera"
-            read -p "  Pilih: " news
+        # LAYER 1 — SURFACE WEB
+        1) read -p "🔍 Query: " q; [ -n "$q" ] && akses_layer1 "https://www.google.com/search?q=$q" "Google" ;;
+        2) read -p "📚 Query: " q; [ -n "$q" ] && akses_layer1 "https://id.wikipedia.org/wiki/$q" "Wikipedia" ;;
+        3) 
+            echo -e "\n${CYAN}Pilih: 1.CNN 2.Kompas 3.BBC 4.Al Jazeera${RESET}"
+            read -p "Pilih: " news
             case $news in
-                1) akses_internet "https://www.cnnindonesia.com" "CNN Indonesia" ;;
-                2) akses_internet "https://www.bbc.com/news" "BBC News" ;;
-                3) akses_internet "https://www.aljazeera.com" "Al Jazeera" ;;
-            esac
-            ;;
-        4)
-            read -p "🎥 Query YouTube: " q
-            [ -n "$q" ] && akses_internet "https://m.youtube.com/results?search_query=$q" "YouTube"
-            ;;
-        5)
-            echo -e "\n${CYAN}Pilih email:${RESET}"
-            echo -e "  ${GOLD}1.${RESET} Gmail"
-            echo -e "  ${GOLD}2.${RESET} Outlook"
-            read -p "  Pilih: " mail
-            case $mail in
-                1) akses_internet "https://mail.google.com" "Gmail" ;;
-                2) akses_internet "https://outlook.live.com" "Outlook" ;;
-            esac
-            ;;
-
-        # ===== LAPISAN 2 — DEEP WEB =====
-        6)
-            read -p "🔬 Query ilmiah: " q
-            [ -n "$q" ] && akses_internet "https://scholar.google.com/scholar?q=$q" "Google Scholar"
-            ;;
-        7)
-            read -p "🧬 Query PubMed: " q
-            [ -n "$q" ] && akses_internet "https://pubmed.ncbi.nlm.nih.gov/?term=$q" "PubMed"
-            ;;
-        8)
-            read -p "📄 Query arXiv: " q
-            [ -n "$q" ] && akses_internet "https://arxiv.org/search/?query=$q" "arXiv"
-            ;;
-        9)
-            read -p "📖 Query ResearchGate: " q
-            [ -n "$q" ] && akses_internet "https://www.researchgate.net/search?q=$q" "ResearchGate"
-            ;;
-        10)
-            start_tor
-            echo -e "\n${CYAN}📚 Library Genesis (via Tor)${RESET}"
-            read -p "📖 Query buku: " q
-            if [ -n "$q" ]; then
-                akses_tor "http://libgen.rs/search.php?req=$q" "Library Genesis"
-            fi
-            ;;
-        11)
-            start_tor
-            echo -e "\n${CYAN}🔬 Sci-Hub (via Tor)${RESET}"
-            read -p "🔬 DOI/URL paper: " doi
-            if [ -n "$doi" ]; then
-                akses_tor "https://sci-hub.se/$doi" "Sci-Hub"
-            fi
-            ;;
-
-        # ===== LAPISAN 3 — DARK WEB =====
-        12)
-            start_tor
+                1) akses_layer1 "https://www.cnnindonesia.com" "CNN Indonesia" ;;
+                2) akses_layer1 "https://www.kompas.com" "Kompas" ;;
+                3) akses_layer1 "https://www.bbc.com/news" "BBC" ;;
+                4) akses_layer1 "https://www.aljazeera.com" "Al Jazeera" ;;
+            esac ;;
+        4) read -p "🎥 Query: " q; [ -n "$q" ] && akses_layer1 "https://m.youtube.com/results?search_query=$q" "YouTube" ;;
+        5) akses_layer1 "https://mail.google.com" "Gmail" ;;
+        
+        # LAYER 2 — DEEP WEB
+        6) read -p "🔬 Query: " q; [ -n "$q" ] && akses_layer2 "https://scholar.google.com/scholar?q=$q" "Google Scholar" ;;
+        7) read -p "🧬 Query: " q; [ -n "$q" ] && akses_layer2 "https://pubmed.ncbi.nlm.nih.gov/?term=$q" "PubMed" ;;
+        8) read -p "📄 Query: " q; [ -n "$q" ] && akses_layer2 "https://arxiv.org/search/?query=$q" "arXiv" ;;
+        9) read -p "📖 Query: " q; [ -n "$q" ] && akses_layer2 "https://www.researchgate.net/search?q=$q" "ResearchGate" ;;
+        10) akses_layer2 "https://libgen.is" "Library Genesis" ;;
+        11) read -p "🔬 DOI: " doi; [ -n "$doi" ] && akses_layer2 "https://sci-hub.se/$doi" "Sci-Hub" ;;
+        
+        # LAYER 3 — DARK WEB
+        12) 
             echo -e "\n${CYAN}🧅 ZeroNet${RESET}"
             if [ -f ~/ZeroNet/zeronet.py ]; then
-                echo -e "${GREEN}✅ ZeroNet terinstall${RESET}"
-                cd ~/ZeroNet && python zeronet.py &
+                echo -e "${GREEN}✅ ZeroNet ada. Menjalankan...${RESET}"
+                cd ~/ZeroNet && nohup python zeronet.py > /dev/null 2>&1 &
                 sleep 5
                 echo -e "${DIM}Buka: http://127.0.0.1:43110${RESET}"
-                echo -e "${DIM}Atau akses via Tor: http://127.0.0.1:43110${RESET}"
-                read -p "Buka browser? (y/n): " b
-                [ "$b" = "y" ] && termux-open-url "http://127.0.0.1:43110"
+                termux-open-url "http://127.0.0.1:43110" 2>/dev/null
             else
-                echo -e "${YELLOW}⚠️  ZeroNet belum terinstall${RESET}"
-                read -p "Install ZeroNet? (y/n): " i
-                if [ "$i" = "y" ]; then
-                    cd ~
-                    git clone https://github.com/HelloZeroNet/ZeroNet.git 2>/dev/null
-                    cd ~/ZeroNet
-                    pip install -r requirements.txt 2>/dev/null
-                    echo -e "${GREEN}✅ ZeroNet terinstall${RESET}"
-                fi
+                echo -e "${YELLOW}⚠️  ZeroNet belum ada${RESET}"
+                echo -e "${DIM}Install: git clone https://github.com/HelloZeroNet/ZeroNet.git${RESET}"
             fi
-            ;;
-        13)
-            start_tor
-            echo -e "\n${CYAN}📰 ProPublica (via Tor)${RESET}"
-            akses_tor "https://www.propublica.org" "ProPublica (Layer 1)"
-            echo -e "${DIM}Catatan: ProPublica juga ada versi .onion${RESET}"
-            akses_tor "https://propub3r6espa33w.onion" "ProPublica .onion"
-            ;;
-        14)
-            start_tor
-            read -p "🔍 Query Ahmia: " q
+            read -p "Tekan Enter..." ;;
+        13) akses_layer3 "https://propub3r6espa33w.onion" "ProPublica" ;;
+        14) read -p "🔍 Query: " q
             if [ -n "$q" ]; then
-                akses_tor "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/search/?q=$q" "Ahmia"
+                akses_layer3 "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/search/?q=$q" "Ahmia"
             else
-                akses_tor "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion" "Ahmia"
-            fi
-            ;;
-        15)
-            start_tor
-            echo -e "\n${CYAN}📚 Hidden Wiki (via Tor)${RESET}"
-            akses_tor "http://zqktlwi4fecvo6ri.onion/wiki/index.php/Main_Page" "Hidden Wiki"
-            ;;
-        16)
-            start_tor
-            echo -e "\n${CYAN}📖 OnionLand (via Tor)${RESET}"
-            akses_tor "http://onionlandbakyt3j5.onion" "OnionLand"
-            ;;
-        17)
-            start_tor
-            echo -e "\n${CYAN}🌐 Custom .onion${RESET}"
-            read -p "URL .onion: " url
-            [ -n "$url" ] && akses_tor "$url" "Custom"
-            ;;
-
-        # ===== UTILITY =====
-        18)
-            echo -e "\n${CYAN}🛡️  Mengaktifkan Tor Shield...${RESET}"
-            python ~/zuhri_os/torshield/zuhri_torshield.py
-            ;;
-        19)
-            start_tor
-            echo -e "\n${CYAN}🧪 Test Tor...${RESET}"
-            echo -e "${GOLD}Test 1: IP${RESET}"
-            torsocks curl -s --max-time 10 ifconfig.me
-            echo ""
-            echo -e "${GOLD}Test 2: Check Tor Project${RESET}"
-            torsocks lynx -dump "https://check.torproject.org/" 2>/dev/null | grep -i "congratulations\|not using"
-            echo ""
-            echo -e "${GOLD}Test 3: Akses .onion${RESET}"
-            torsocks curl -s --max-time 15 "http://zqktlwi4fecvo6ri.onion/" | head -20
-            ;;
+                akses_layer3 "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion" "Ahmia"
+            fi ;;
+        15) akses_layer3 "http://zqktlwi4fecvo6ri.onion/wiki/index.php/Main_Page" "Hidden Wiki" ;;
+        16) akses_layer3 "http://onionlandbakyt3j5.onion" "OnionLand" ;;
+        17) read -p "🌐 URL .onion: " url; [ -n "$url" ] && akses_layer3 "$url" "Custom" ;;
+        
+        # UTILITY
+        18) python ~/zuhri_os/torshield/zuhri_torshield.py ;;
+        19) test_tor ;;
         20)
+            clear
             echo -e "\n${BOLD}📊 STATUS:${RESET}"
             if pgrep -x tor > /dev/null; then
                 echo -e "  Tor: ${GREEN}✅ AKTIF${RESET}"
-                torsocks curl -s --max-time 5 ifconfig.me
-                echo ""
+                echo -e "  IP : $(torsocks curl -s --max-time 5 ifconfig.me)"
             else
                 echo -e "  Tor: ${RED}❌ MATI${RESET}"
             fi
-            echo -e "  ZeroNet: $([ -f ~/ZeroNet/zeronet.py ] && echo '✅' || echo '❌')"
-            echo -e "  Tor Shield: $([ -f ~/zuhri_os/torshield/zuhri_torshield.py ] && echo '✅' || echo '❌')"
             echo ""
-            ;;
-        0)
-            echo -e "\n${GOLD}👋 Sampai jumpa!${RESET}\n"
-            exit 0
-            ;;
-        *)
-            echo -e "\n${RED}❌ Pilihan tidak valid${RESET}"
-            sleep 2
-            ;;
+            read -p "Tekan Enter..." ;;
+        0) echo -e "\n${GOLD}👋 Sampai jumpa!${RESET}\n"; exit 0 ;;
+        *) echo -e "\n${RED}❌ Pilihan tidak valid${RESET}"; sleep 1 ;;
     esac
-
-    if [ "$pilihan" != "0" ]; then
-        echo ""
-        read -p "Tekan Enter untuk kembali ke menu..."
-    fi
 done
