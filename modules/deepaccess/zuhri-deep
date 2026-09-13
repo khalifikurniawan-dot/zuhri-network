@@ -1,0 +1,151 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# ZUHRI DEEP ACCESS — AKSES LAPISAN 2 & 3
+# Untuk riset ilmiah & eksplorasi anonim
+
+clear
+
+RESET='\033[0m'; BOLD='\033[1m'; DIM='\033[2m'
+RED='\033[91m'; GREEN='\033[92m'; YELLOW='\033[93m'
+CYAN='\033[96m'; GOLD='\033[93m'; MAGENTA='\033[95m'
+
+# ===== CEK TOR =====
+if ! command -v tor > /dev/null 2>&1; then
+    echo -e "${YELLOW}⚠️  Tor belum terinstall. Install dulu.${RESET}"
+    pkg install tor torsocks lynx -y
+fi
+
+# ===== PANDUAN =====
+while true; do
+    clear
+    echo ""
+    echo -e "${BOLD}${MAGENTA}╔══════════════════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${BOLD}${MAGENTA}║        🌐 ZUHRI DEEP ACCESS — LAPISAN 2 & 3                        ║${RESET}"
+    echo -e "${BOLD}${MAGENTA}╚══════════════════════════════════════════════════════════════════════╝${RESET}"
+    echo ""
+    echo -e "${BOLD}${CYAN}  📚 LAPISAN 2 — DEEP WEB (ILMIAH & LEGAL):${RESET}"
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}1.${RESET} 🔬 Sci-Hub           → Jurnal ilmiah (via Tor)"
+    echo -e "  ${GOLD}2.${RESET} 📖 Library Genesis   → Buku & paper (via Tor)"
+    echo -e "  ${GOLD}3.${RESET} 📄 PaperCli          → 25+ sumber akademik"
+    echo -e "  ${GOLD}4.${RESET} 🎓 Google Scholar    → Pencarian ilmiah (via Tor)"
+    echo -e "  ${GOLD}5.${RESET} 🧬 PubMed            → Biomedis (via Tor)"
+    echo ""
+    echo -e "${BOLD}${MAGENTA}  🌑 LAPISAN 3 — DARK WEB (ANONIM):${RESET}"
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}6.${RESET} 🧅 ZeroNet           → Web terdesentralisasi"
+    echo -e "  ${GOLD}7.${RESET} 📰 ProPublica        → Jurnalisme investigasi"
+    echo -e "  ${GOLD}8.${RESET} 🔍 Ahmia             → Pencarian .onion"
+    echo -e "  ${GOLD}9.${RESET} 📚 Hidden Wiki       → Daftar situs .onion"
+    echo ""
+    echo -e "${DIM}  ──────────────────────────────────────────────────────────────────${RESET}"
+    echo -e "  ${GOLD}10.${RESET} 🧅 Cek Status Tor"
+    echo -e "  ${GOLD}11.${RESET} 📥 Install PaperCli"
+    echo -e "  ${GOLD}12.${RESET} 📥 Install ZeroNet"
+    echo -e "  ${GOLD}0.${RESET}  🚪 Keluar"
+    echo ""
+    read -p "  Pilih (0-12): " pilihan
+
+    # ===== JALANKAN TOR =====
+    if [ "$pilihan" != "0" ] && [ "$pilihan" != "11" ] && [ "$pilihan" != "12" ]; then
+        if ! pgrep -x "tor" > /dev/null; then
+            echo -e "\n${CYAN}⏳ Menjalankan Tor...${RESET}"
+            nohup tor > /dev/null 2>&1 &
+            sleep 10
+        fi
+        IP_TOR=$(torsocks curl -s --max-time 3 ifconfig.me 2>/dev/null)
+    fi
+
+    case $pilihan in
+        # ===== LAPISAN 2 — DEEP WEB =====
+        1)
+            echo -e "\n${CYAN}🔬 Membuka Sci-Hub (via Tor)...${RESET}"
+            echo -e "${DIM}Masukkan DOI atau URL paper.${RESET}\n"
+            read -p "DOI: " doi
+            if [ -n "$doi" ]; then
+                torsocks lynx "https://scihub22266oqcxt.onion/$doi"
+            fi
+            ;;
+        2)
+            echo -e "\n${CYAN}📖 Membuka Library Genesis (via Tor)...${RESET}"
+            torsocks lynx "http://libgenfrialc7tguyjywaovewwfwelrnjz3knnnjsj5czqgbhpf7mid.onion/"
+            ;;
+        3)
+            echo -e "\n${CYAN}📄 PaperCli — 25+ Sumber Akademik${RESET}"
+            echo -e "${DIM}Install dulu: pip install paper-cli${RESET}"
+            echo -e "${DIM}Atau: pilih menu 11 untuk install${RESET}\n"
+            read -p "Kata kunci: " query
+            if [ -n "$query" ]; then
+                paper-cli search "$query" -n 5 2>/dev/null || echo -e "${YELLOW}PaperCli belum terinstall. Pilih menu 11.${RESET}"
+            fi
+            ;;
+        4)
+            echo -e "\n${CYAN}🎓 Google Scholar (via Tor)...${RESET}"
+            read -p "Kata kunci: " query
+            if [ -n "$query" ]; then
+                torsocks lynx "https://scholar.google.com/scholar?q=$query"
+            fi
+            ;;
+        5)
+            echo -e "\n${CYAN}🧬 PubMed (via Tor)...${RESET}"
+            read -p "Kata kunci: " query
+            if [ -n "$query" ]; then
+                torsocks lynx "https://pubmed.ncbi.nlm.nih.gov/?term=$query"
+            fi
+            ;;
+        # ===== LAPISAN 3 — DARK WEB =====
+        6)
+            echo -e "\n${CYAN}🧅 ZeroNet — Web Terdesentralisasi${RESET}"
+            if [ -f ~/ZeroNet/zeronet.py ]; then
+                echo -e "${GREEN}ZeroNet terinstall. Menjalankan...${RESET}"
+                cd ~/ZeroNet && python zeronet.py &
+                sleep 5
+                echo -e "${DIM}Buka browser: http://127.0.0.1:43110${RESET}"
+            else
+                echo -e "${YELLOW}ZeroNet belum terinstall. Pilih menu 12.${RESET}"
+            fi
+            ;;
+        7)
+            echo -e "\n${CYAN}📰 ProPublica (via Tor)...${RESET}"
+            torsocks lynx "https://propub3r6espa33w.onion/"
+            ;;
+        8)
+            echo -e "\n${CYAN}🔍 Ahmia — Pencarian .onion${RESET}"
+            read -p "Kata kunci: " query
+            if [ -n "$query" ]; then
+                torsocks lynx "http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/search/?q=$query"
+            fi
+            ;;
+        9)
+            echo -e "\n${CYAN}📚 Hidden Wiki (via Tor)...${RESET}"
+            torsocks lynx "http://zqktlwi4fecvo6ri.onion/"
+            ;;
+        10)
+            echo -e "\n${CYAN}🧅 Cek Status Tor${RESET}"
+            torsocks lynx "https://check.torproject.org/"
+            ;;
+        11)
+            echo -e "\n${CYAN}📥 Install PaperCli${RESET}"
+            pip install paper-cli 2>/dev/null && echo -e "${GREEN}✅ PaperCli terinstall${RESET}" || echo -e "${RED}❌ Gagal install${RESET}"
+            ;;
+        12)
+            echo -e "\n${CYAN}📥 Install ZeroNet${RESET}"
+            cd ~
+            git clone https://github.com/HelloZeroNet/ZeroNet.git 2>/dev/null
+            cd ~/ZeroNet
+            pip install -r requirements.txt 2>/dev/null
+            echo -e "${GREEN}✅ ZeroNet terinstall${RESET}"
+            echo -e "${DIM}Jalankan: cd ~/ZeroNet && python zeronet.py${RESET}"
+            ;;
+        0)
+            echo -e "\n${GOLD}👋 Sampai jumpa!${RESET}\n"
+            exit 0
+            ;;
+        *)
+            echo -e "\n${RED}❌ Pilihan tidak valid${RESET}"
+            sleep 2
+            ;;
+    esac
+
+    echo ""
+    read -p "Tekan Enter untuk kembali ke menu..."
+done
