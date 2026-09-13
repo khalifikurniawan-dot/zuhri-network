@@ -70,7 +70,13 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🤖 ZUHRI WEB4 — AI AGENT OTONOM (BARU)
+  🕌 ZUHRI SPIRITUAL ULTIMATE — PENGINGAT KEBESARAN TUHAN (BARU)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}44.{RESET} {BOLD}🕌 ZUHRI SPIRITUAL ULTIMATE{RESET} → {DIM}Pengingat Kebesaran Tuhan{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🤖 ZUHRI WEB4 — AI AGENT OTONOM
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}43.{RESET} {BOLD}🤖 ZUHRI WEB4{RESET}           → {DIM}AI Agent Otonom{RESET}
@@ -100,7 +106,7 @@ def print_menu():
   {GOLD}39.{RESET} {BOLD}🛡️  ZUHRI ECHO-CORE{RESET}       → {DIM}Perisai Kuantum (PQC){RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🕌 ZUHRI SPIRITUAL — ILMU HATI
+  🕌 ZUHRI SPIRITUAL — FATWA KEHIDUPAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}24.{RESET} {BOLD}🕌 ZUHRI SPIRITUAL{RESET}       → {DIM}Fatwa Kehidupan & Yolhan Wijaya{RESET}
@@ -234,7 +240,7 @@ def main():
         print_operator()
         print_menu()
         try:
-            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-43): {RESET}").strip()
+            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-44): {RESET}").strip()
             if c == "0":
                 print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
             elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
@@ -279,6 +285,7 @@ def main():
             elif c == "41": run("python ~/zuhri_os/social/zuhri_social.py")
             elif c == "42": run("python ~/zuhri_os/web3hub/zuhri_web3.py")
             elif c == "43": run("python ~/zuhri_os/web4/zuhri_web4.py")
+            elif c == "44": run("python ~/zuhri_os/spiritual_ultimate/zuhri_spiritual_ultimate.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
                 input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
