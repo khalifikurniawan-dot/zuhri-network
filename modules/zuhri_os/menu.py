@@ -70,7 +70,13 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  💰 ZUHRI FINANSIAL ULTIMATE — BOT KRIPTO + FINANSIAL (BARU)
+  🛡️  ZUHRI SECURITY SUITE — 4 LAPISAN KEAMANAN (BARU)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}28.{RESET} {BOLD}🛡️  ZUHRI SECURITY SUITE{RESET}      → {DIM}Botnet + Tor + Echo-Core + Enkripsi{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  💰 ZUHRI FINANSIAL ULTIMATE — BOT KRIPTO + FINANSIAL
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}44.{RESET} {BOLD}💰 ZUHRI FINANSIAL ULTIMATE{RESET} → {DIM}Bot Kripto + Finansial Pro{RESET}
@@ -100,18 +106,6 @@ def print_menu():
   {GOLD}41.{RESET} {BOLD}🌐 ZUHRI SOCIAL{RESET}         → {DIM}Chat offline + Berita verified{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI TOR SHIELD — PERISAI BERLAPIS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}40.{RESET} {BOLD}🛡️  ZUHRI TOR SHIELD{RESET}       → {DIM}Perisai Tor berlapis (5 layer){RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI ECHO-CORE — POST-QUANTUM SHIELD
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}39.{RESET} {BOLD}🛡️  ZUHRI ECHO-CORE{RESET}       → {DIM}Perisai Kuantum (PQC){RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🕌 ZUHRI SPIRITUAL — FATWA KEHIDUPAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
@@ -136,23 +130,11 @@ def print_menu():
   {GOLD}27.{RESET} {BOLD}⚡ ZUHRI ENERGI{RESET}          → {DIM}Monitor baterai & optimasi daya{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI BOTNET HUNTER — KEAMANAN JARINGAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}28.{RESET} {BOLD}🛡️  ZUHRI BOTNET HUNTER{RESET}   → {DIM}Deteksi ancaman jaringan{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ⛓️  ZUHRI CHAIN & DID — DECENTRALIZED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}29.{RESET} {BOLD}⛓️  ZUHRI CHAIN{RESET}           → {DIM}Database terdesentralisasi{RESET}
   {GOLD}30.{RESET} {BOLD}🆔 ZUHRI DID{RESET}             → {DIM}Decentralized identifier{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🔐 ZUHRI ENKRIPSI — KEAMANAN DATA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}31.{RESET} {BOLD}🔐 ZUHRI ENKRIPSI{RESET}        → {DIM}Enkripsi + Steganografi + Password{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🌐 ZUHRI DEEP ACCESS — LAPISAN 2 & 3
@@ -252,7 +234,7 @@ def main():
             elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
             elif c == "2": run("python ~/zuhri_os/passport/zuhri_passport.py")
             elif c == "3": run("python ~/zuhri_os/crypto/zuhri_crypto.py")
-            elif c == "4": run("python ~/zuhri_os/security/security_shield.py")
+            elif c == "4": run("python ~/zuhri_os/securitysuite/zuhri_securitysuite.py")
             elif c == "5": run("python ~/kosmik/p2p/mesh_node.py")
             elif c == "6": run("python ~/kosmik/p2p/mesh_discovery.py")
             elif c == "7": run("python ~/kosmik/sos_beacon.py beacon")
@@ -275,10 +257,9 @@ def main():
             elif c == "25": run("python ~/zuhri_os/frekuensi/zuhri_frekuensi.py")
             elif c == "26": run("python ~/zuhri_os/predictive/zuhri_predictive.py")
             elif c == "27": run("python ~/zuhri_os/energi/zuhri_energi.py")
-            elif c == "28": run("python ~/zuhri_os/botnet/zuhri_botnet.py")
+            elif c == "28": run("python ~/zuhri_os/securitysuite/zuhri_securitysuite.py")
             elif c == "29": run("python ~/zuhri_os/chain/zuhri_chain.py")
             elif c == "30": run("python ~/zuhri_os/did/zuhri_did.py")
-            elif c == "31": run("python ~/zuhri_os/enkripsi/zuhri_enkripsi.py")
             elif c == "32": run("python ~/zuhri_os/autoroute/zuhri_autoroute.py")
             elif c == "33": run("python ~/zuhri_os/docs/zuhri_docs.py")
             elif c == "34": run("bash ~/zuhri_os/deepaccess/zuhri-deep")
@@ -286,9 +267,6 @@ def main():
             elif c == "36": run("bash ~/zuhri_os/formalism/zuhri-search")
             elif c == "37": run("bash ~/zuhri_os/formalism/zuhri-search")
             elif c == "38": run("python ~/zuhri_os/tradisional/zuhri_tradisional.py")
-            elif c == "39": run("python ~/zuhri_os/echocore/zuhri_echocore.py")
-            elif c == "40": run("python ~/zuhri_os/torshield/zuhri_torshield.py")
-            elif c == "41": run("python ~/zuhri_os/social/zuhri_social.py")
             elif c == "42": run("python ~/zuhri_os/web3hub/zuhri_web3.py")
             elif c == "43": run("python ~/zuhri_os/web4/zuhri_web4.py")
             elif c == "44": run("python ~/zuhri_os/finansialultimate/zuhri_finansialultimate.py")
