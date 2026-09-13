@@ -113,6 +113,20 @@ def print_menu():
   {GOLD}31.{RESET} {BOLD}🔐 ZUHRI ENKRIPSI{RESET}        → {DIM}Enkripsi + Steganografi + Password{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🌐 ZUHRI DEEP ACCESS — LAPISAN 2 & 3
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}34.{RESET} {BOLD}🌐 ZUHRI DEEP ACCESS{RESET}     → {DIM}Deep Web + Dark Web (ilmiah){RESET}
+  {GOLD}35.{RESET} {BOLD}🌑 ZUHRI DARK-WEB{RESET}        → {DIM}Dark-Web Gateway + panduan{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🧬 ZUHRI FORMALISM SEARCH — LAPISAN 4
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}36.{RESET} {BOLD}🧬 ZUHRI FORMALISM SEARCH{RESET} → {DIM}Logika + Data + Intuisi{RESET}
+  {GOLD}37.{RESET} {BOLD}🪞 CERMIN BAYANGAN{RESET}        → {DIM}Meta-pencarian tersembunyi{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🌟 ZUHRI CORE — IDENTITAS & KEAMANAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
@@ -133,15 +147,9 @@ def print_menu():
   🧠 ZUHRI AI — KECERDASAN BUATAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}8.{RESET}  🧠 {BOLD}ZUHRI AI{RESET}              → {DIM}AI pribadi offline (phi){RESET}
+  {GOLD}8.{RESET}  🧠 {BOLD}ZUHRI AI{RESET}              → {DIM}AI pribadi offline{RESET}
   {GOLD}9.{RESET}  🔍 {BOLD}ZUHRI VISION{RESET}          → {DIM}Deteksi objek kamera{RESET}
   {GOLD}10.{RESET} 🌍 {BOLD}ZUHRI TRANSLATE{RESET}       → {DIM}Terjemahan offline{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌑 ZUHRI DARK-WEB — AKSES ANONIM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}11.{RESET} 🌑 {BOLD}ZUHRI DARK-WEB{RESET}       → {DIM}Akses .onion anonim{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🗳️  ZUHRI DEMOKRASI — TATA KELOLA
@@ -190,7 +198,7 @@ def main():
         print_operator()
         print_menu()
         try:
-            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-33): {RESET}").strip()
+            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-37): {RESET}").strip()
             if c == "0":
                 print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
             elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
@@ -203,7 +211,6 @@ def main():
             elif c == "8": run("ai")
             elif c == "9": run("python ~/kosmik/vision/edge_vision.py")
             elif c == "10": run("python ~/zuhri_os/translator/translator.py")
-            elif c == "11": run("dark-web")
             elif c == "12": run("python ~/zuhri_os/vote/zuhri_vote.py")
             elif c == "13": run("python ~/zuhri_os/contract/zuhri_contract.py")
             elif c == "14": run("python ~/zuhri_os/finance/zuhri_finance.py")
@@ -226,6 +233,10 @@ def main():
             elif c == "31": run("python ~/zuhri_os/enkripsi/zuhri_enkripsi.py")
             elif c == "32": run("python ~/zuhri_os/autoroute/zuhri_autoroute.py")
             elif c == "33": run("python ~/zuhri_os/docs/zuhri_docs.py")
+            elif c == "34": run("bash ~/zuhri_os/deepaccess/zuhri-deep")
+            elif c == "35": run("bash ~/zuhri_os/darkweb/dark-web")
+            elif c == "36": run("bash ~/zuhri_os/formalism/zuhri-search")
+            elif c == "37": run("bash ~/zuhri_os/formalism/zuhri-search")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
                 input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
