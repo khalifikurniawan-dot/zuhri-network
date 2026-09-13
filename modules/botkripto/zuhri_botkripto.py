@@ -7,6 +7,15 @@ Pasar Modal + Berita + Prediksi berbasis Zuhri Formalism
 import os, sys, json, hashlib, secrets, subprocess, time, random
 from datetime import datetime, timedelta
 
+# ===== ZUHRI AUTH (FIX) =====
+sys.path.insert(0, os.path.expanduser("~/zuhri_os/id"))
+try:
+    from zuhri_auth import load_identity, log_verified
+    ZUHRI_ID_OK = True
+except ImportError:
+    ZUHRI_ID_OK = False
+    def log_verified(msg): pass
+
 HOME = os.path.expanduser("~")
 BOT_DIR = os.path.join(HOME, "zuhri_os", "botkripto")
 DATA_DIR = os.path.join(BOT_DIR, "data")
@@ -29,20 +38,23 @@ def pause():
 # ============================================================
 def zuhri_predict(coin):
     """Prediksi berbasis Zuhri Formalism"""
-    # Ambil data historis
     try:
         import requests
         r = requests.get(
             f"https://api.coingecko.com/api/v3/coins/{coin}/market_chart?vs_currency=usd&days=7",
-            timeout=10
+            timeout=15
         )
+        
+        if r.status_code != 200:
+            return {"error": f"API error: {r.status_code}"}
+        
         data = r.json()
         prices = [p[1] for p in data.get('prices', [])]
         
         if len(prices) < 10:
-            return None
+            return {"error": "Data tidak cukup"}
         
-        # Analisis 0-8-9
+        # Analisis
         current = prices[-1]
         prev_24h = prices[-24] if len(prices) > 24 else prices[0]
         change_24h = ((current - prev_24h) / prev_24h) * 100
@@ -51,15 +63,10 @@ def zuhri_predict(coin):
         h = hashlib.sha3_256(f"{coin}{current}{datetime.now().strftime('%Y%m%d')}".encode()).hexdigest()
         resonansi = (sum(int(c, 16) for c in h[:16]) % 10 + 8) % 10
         
-        # Prediksi
-        # Logika 0: kosongkan asumsi
-        # Logika 8: buka kemungkinan
-        # Logika 9: temukan keseimbangan
-        
         # Momentum 7 hari
         momentum = (prices[-1] - prices[0]) / prices[0] * 100
         
-        # Prediksi 24 jam
+        # Prediksi berdasarkan logika 0-8-9
         if change_24h > 5:
             prediction = "TURUN (koreksi)"
             reason = "Harga naik terlalu cepat — perlu koreksi"
@@ -111,8 +118,14 @@ def harga_crypto():
         import requests
         r = requests.get(
             "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,binancecoin,cardano,ripple,dogecoin&vs_currencies=usd,idr&include_24hr_change=true",
-            timeout=10
+            timeout=15
         )
+        
+        if r.status_code != 200:
+            print(f"{RED}❌ API error: {r.status_code}{RESET}\n")
+            pause()
+            return
+        
         data = r.json()
         
         print(f"{BOLD}{'Coin':12} {'USD':>15} {'IDR':>20} {'24H':>10}{RESET}")
@@ -130,14 +143,17 @@ def harga_crypto():
         
         print()
         if ZUHRI_ID_OK:
-            log_verified("BOT_KRIPTO_PRICE")
+            try:
+                log_verified("BOT_KRIPTO_PRICE")
+            except:
+                pass
     except Exception as e:
         print(f"{RED}❌ Gagal ambil data: {e}{RESET}\n")
     
     pause()
 
 # ============================================================
-# PREDIKSI ZUHRI FORMALISM
+# PREDIKSI ZUHRI FORMALISM (FIXED)
 # ============================================================
 def prediksi():
     clear()
@@ -164,13 +180,20 @@ def prediksi():
         
         result = zuhri_predict(coin)
         
+        # CEK ERROR
         if "error" in result:
-            print(f"{RED}❌ Error: {result['error']}{RESET}\n")
+            print(f"{RED}❌ Error: {result['error']}{RESET}")
+            print(f"{DIM}💡 Coba lagi nanti atau cek koneksi internet.{RESET}\n")
             pause()
             return
         
         # Tampilkan hasil
-        color = GREEN if "NAIK" in result['prediction'] else (RED if "TURUN" in result['prediction'] else YELLOW)
+        if "NAIK" in result['prediction']:
+            color = GREEN
+        elif "TURUN" in result['prediction']:
+            color = RED
+        else:
+            color = YELLOW
         
         print(f"""
 {BOLD}📊 HASIL PREDIKSI:{RESET}
@@ -196,16 +219,24 @@ def prediksi():
 """)
         
         # Simpan prediksi
-        f = os.path.join(PRED_DIR, f"{coin}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
-        json.dump(result, open(f, "w"), indent=2)
+        try:
+            f = os.path.join(PRED_DIR, f"{coin}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
+            json.dump(result, open(f, "w"), indent=2)
+        except:
+            pass
         
         if ZUHRI_ID_OK:
-            log_verified(f"BOT_KRIPTO_PREDICT: {coin}")
+            try:
+                log_verified(f"BOT_KRIPTO_PREDICT: {coin}")
+            except:
+                pass
     
     except ValueError:
-        pass
+        print(f"{RED}❌ Input tidak valid{RESET}\n")
     except KeyboardInterrupt:
         pass
+    except Exception as e:
+        print(f"{RED}❌ Error: {e}{RESET}\n")
     
     pause()
 
@@ -230,9 +261,6 @@ def berita():
   {GOLD}7.{RESET} CoinMarketCap     → https://coinmarketcap.com
   {GOLD}8.{RESET} CoinGecko         → https://www.coingecko.com
 
-{BOLD}🎯 CARA AKSES:{RESET}
-  Ketik nomor (1-8) untuk buka di browser
-
 {BOLD}0.{RESET} Kembali
 """)
     
@@ -253,10 +281,16 @@ def berita():
         
         if c in urls:
             print(f"\n{CYAN}🌐 Membuka...{RESET}")
-            subprocess.run(["termux-open-url", urls[c]], timeout=5)
+            try:
+                subprocess.run(["termux-open-url", urls[c]], timeout=5)
+            except:
+                print(f"{YELLOW}⚠️  Buka manual: {urls[c]}{RESET}")
             
             if ZUHRI_ID_OK:
-                log_verified(f"BOT_KRIPTO_NEWS: {c}")
+                try:
+                    log_verified(f"BOT_KRIPTO_NEWS: {c}")
+                except:
+                    pass
     except:
         pass
     
@@ -277,7 +311,7 @@ def pasar_modal():
     
     try:
         import requests
-        r = requests.get("https://api.coingecko.com/api/v3/global", timeout=10)
+        r = requests.get("https://api.coingecko.com/api/v3/global", timeout=15)
         data = r.json().get('data', {})
         
         total_market = data.get('total_market_cap', {}).get('usd', 0)
@@ -299,9 +333,9 @@ def pasar_modal():
         
         print(f"""
 {BOLD}📈 TREN PASAR:{RESET}
-  {GOLD}•{RESET} Fear & Greed Index: (cek di alternative.me)
-  {GOLD}•{RESET} Trending: Cek di CoinGecko
-  {GOLD}•{RESET} Top Gainers: Cek di CoinMarketCap
+  {GOLD}•{RESET} Fear & Greed: https://alternative.me/crypto/fear-and-greed-index/
+  {GOLD}•{RESET} Trending: https://coingecko.com/en/trending
+  {GOLD}•{RESET} Top Gainers: https://coinmarketcap.com/gainers-losers/
 
 {BOLD}🔗 LINK:{RESET}
   {GOLD}•{RESET} CoinMarketCap: https://coinmarketcap.com
@@ -310,14 +344,17 @@ def pasar_modal():
 """)
         
         if ZUHRI_ID_OK:
-            log_verified("BOT_KRIPTO_MARKET")
+            try:
+                log_verified("BOT_KRIPTO_MARKET")
+            except:
+                pass
     except Exception as e:
         print(f"{RED}❌ Gagal ambil data: {e}{RESET}\n")
     
     pause()
 
 # ============================================================
-# PORTFOLIO SEDERHANA
+# PORTFOLIO
 # ============================================================
 def portfolio():
     clear()
@@ -330,7 +367,10 @@ def portfolio():
     port_file = os.path.join(DATA_DIR, "portfolio.json")
     
     if os.path.exists(port_file):
-        port = json.load(open(port_file))
+        try:
+            port = json.load(open(port_file))
+        except:
+            port = {}
     else:
         port = {}
     
@@ -352,7 +392,7 @@ def portfolio():
         try:
             import requests
             ids = ",".join(port.keys())
-            r = requests.get(f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd,idr", timeout=10)
+            r = requests.get(f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd,idr", timeout=15)
             data = r.json()
             
             total_usd = 0
@@ -391,7 +431,7 @@ def info():
 
 {BOLD}🔮 PREDIKSI ZUHRI FORMALISM:{RESET}
 
-  Menggunakan prinsip {GOLD}0-8-9{RESET}:
+  Prinsip {GOLD}0-8-9{RESET}:
   {GOLD}0{RESET} = Kosongkan asumsi
   {GOLD}8{RESET} = Buka kemungkinan
   {GOLD}9{RESET} = Temukan keseimbangan
@@ -400,26 +440,13 @@ def info():
   {GOLD}•{RESET} Momentum 7 hari
   {GOLD}•{RESET} Perubahan 24 jam
   {GOLD}•{RESET} Resonansi (hash-based)
-  {GOLD}•{RESET} Keseimbangan pasar
 
 {BOLD}⚠️  DISCLAIMER:{RESET}
-
-  {RED}❌ INI BUKAN SARAN INVESTASI{RESET}
+  {RED}❌ BUKAN SARAN INVESTASI{RESET}
   {RED}❌ Prediksi TIDAK 100% AKURAT{RESET}
   {RED}❌ Crypto SANGAT VOLATIL{RESET}
-
-  {GREEN}✅ Gunakan sebagai REFERENSI saja{RESET}
+  {GREEN}✅ Gunakan sebagai REFERENSI{RESET}
   {GREEN}✅ DYOR (Do Your Own Research){RESET}
-  {GREEN}✅ Jangan invest lebih dari kemampuan{RESET}
-
-{BOLD}📚 SUMBER:{RESET}
-  {GOLD}•{RESET} CoinGecko API
-  {GOLD}•{RESET} CoinMarketCap
-  {GOLD}•{RESET} Berita dari media terpercaya
-
-{BOLD}🎯 FILOSOFI:{RESET}
-  {CYAN}"Zuhri Formalism — logika + data + intuisi${RESET}
-  {CYAN}untuk keputusan yang seimbang."{RESET}
 """)
     pause()
 
