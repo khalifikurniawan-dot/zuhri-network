@@ -70,6 +70,12 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🌐 ZUHRI SOCIAL — MEDIA SOSIAL & CHAT (BARU)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}41.{RESET} {BOLD}🌐 ZUHRI SOCIAL{RESET}         → {DIM}Chat offline + Berita verified{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🛡️  ZUHRI TOR SHIELD — PERISAI BERLAPIS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
@@ -216,7 +222,7 @@ def main():
         print_operator()
         print_menu()
         try:
-            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-40): {RESET}").strip()
+            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-41): {RESET}").strip()
             if c == "0":
                 print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
             elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
@@ -258,6 +264,7 @@ def main():
             elif c == "38": run("python ~/zuhri_os/tradisional/zuhri_tradisional.py")
             elif c == "39": run("python ~/zuhri_os/echocore/zuhri_echocore.py")
             elif c == "40": run("python ~/zuhri_os/torshield/zuhri_torshield.py")
+            elif c == "41": run("python ~/zuhri_os/social/zuhri_social.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
                 input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
