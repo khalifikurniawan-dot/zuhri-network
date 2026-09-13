@@ -70,7 +70,13 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌐 ZUHRI DIGITAL HUB — SOCIAL + WEB3 + WEB4 + COMMUNITY (BARU)
+  📡 ZUHRI MONITORING SUITE — FREKUENSI + PREDICTIVE + ENERGI (BARU)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}25.{RESET} {BOLD}📡 ZUHRI MONITORING SUITE{RESET}    → {DIM}Frekuensi + Predictive + Energi{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🌐 ZUHRI DIGITAL HUB — SOCIAL + WEB3 + WEB4 + COMMUNITY
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}41.{RESET} {BOLD}🌐 ZUHRI DIGITAL HUB{RESET}      → {DIM}Social + Web3 + Web4 + Community{RESET}
@@ -92,24 +98,6 @@ def print_menu():
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
   {GOLD}24.{RESET} {BOLD}🕌 ZUHRI SPIRITUAL{RESET}       → {DIM}Fatwa Kehidupan & Yolhan Wijaya{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📡 ZUHRI FREKUENSI — RESONANSI & ANOMALI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}25.{RESET} {BOLD}📡 ZUHRI FREKUENSI{RESET}       → {DIM}Monitoring gelombang & anomali{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🔮 ZUHRI PREDICTIVE — TERMINAL PREDIKTIF
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}26.{RESET} {BOLD}🔮 ZUHRI PREDICTIVE{RESET}      → {DIM}Terminal belajar kebiasaan{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⚡ ZUHRI ENERGI — KEMANDIRIAN ENERGI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}27.{RESET} {BOLD}⚡ ZUHRI ENERGI{RESET}          → {DIM}Monitor baterai & optimasi daya{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ⛓️  ZUHRI CHAIN & DID — DECENTRALIZED
@@ -236,9 +224,7 @@ def main():
             elif c == "22": run("python ~/zuhri_os/peringatan/zuhri_peringatan.py")
             elif c == "23": run("python ~/zuhri_os/onboarding/welcome.py")
             elif c == "24": run("python ~/zuhri_os/spiritual/zuhri_spiritual.py")
-            elif c == "25": run("python ~/zuhri_os/frekuensi/zuhri_frekuensi.py")
-            elif c == "26": run("python ~/zuhri_os/predictive/zuhri_predictive.py")
-            elif c == "27": run("python ~/zuhri_os/energi/zuhri_energi.py")
+            elif c == "25": run("python ~/zuhri_os/monitoringsuite/zuhri_monitoringsuite.py")
             elif c == "28": run("python ~/zuhri_os/securitysuite/zuhri_securitysuite.py")
             elif c == "29": run("python ~/zuhri_os/chain/zuhri_chain.py")
             elif c == "30": run("python ~/zuhri_os/did/zuhri_did.py")
