@@ -1,0 +1,441 @@
+
+# Alias dasar
+
+# Auto-start Tor (opsional)
+if ! pgrep -x "tor" > /dev/null; then
+    nohup tor > /dev/null 2>&1 &
+    sleep 3
+fi
+
+# ===== ZUHRI ID =====
+
+
+# ===== ZUHRI ID BACKUP =====
+
+
+# ===== BACKUP MANAGER (Updated) =====
+
+export PYTHONPATH="$HOME/zuhri_os:$HOME/zuhri_os/id:$PYTHONPATH"
+
+# Autentikasi terpusat
+alias auth="python ~/zuhri_os/id/zuhri_auth.py"
+
+# Inti sistem
+
+# Keamanan & Kripto
+
+# AI
+
+# Jaringan
+
+# Visi & Suara
+
+# Dark Web
+
+# Prediktif
+
+# Darurat
+
+# Keuangan
+
+# Sistem
+
+# Bahasa
+
+# ===== AUTO-START =====
+# Auto-start Tor (opsional)
+if ! pgrep -x "tor" > /dev/null; then
+    nohup tor > /dev/null 2>&1 &
+    sleep 2
+fi
+
+# Autentikasi terpusat
+alias auth="python ~/zuhri_os/id/zuhri_auth.py"
+
+# Inti sistem
+
+# Keamanan & Kripto
+
+# AI
+
+# Jaringan
+
+# Visi & Suara
+
+# Dark Web
+
+# Prediktif
+
+# Darurat
+
+# Keuangan
+
+# Sistem
+
+# Bahasa
+
+# ===== AUTO-START =====
+# Auto-start Tor (opsional)
+if ! pgrep -x "tor" > /dev/null; then
+    nohup tor > /dev/null 2>&1 &
+    sleep 2
+fi
+
+# Autentikasi terpusat
+alias auth="python ~/zuhri_os/id/zuhri_auth.py"
+
+# Inti sistem
+
+# Keamanan & Kripto
+
+# AI
+
+# Jaringan
+
+# Visi & Suara
+
+# Dark Web
+
+# Prediktif
+
+# Darurat
+
+# Keuangan
+
+# Sistem
+
+# Bahasa
+
+# ===== AUTO-START =====
+# Auto-start Tor (opsional)
+if ! pgrep -x "tor" > /dev/null; then
+    nohup tor > /dev/null 2>&1 &
+    sleep 2
+fi
+
+# ===== ZUHRI VOTE =====
+alias vote="python ~/zuhri_os/vote/zuhri_vote.py"
+
+
+# ===== ZUHRI CONTRACT =====
+alias contract="python ~/zuhri_os/contract/zuhri_contract.py"
+
+
+# ===== ZUHRI PASSPORT =====
+alias passport="python ~/zuhri_os/passport/zuhri_passport.py"
+
+
+# Autentikasi terpusat
+alias auth="python ~/zuhri_os/id/zuhri_auth.py"
+
+# Inti sistem
+
+# Keamanan & Kripto
+
+# AI
+
+# Jaringan
+
+# Visi & Suara
+
+# Dark Web
+
+# Prediktif
+
+# Darurat
+
+# Keuangan
+
+# Sistem
+
+# Bahasa
+
+# ===== AUTO-START =====
+# Auto-start Tor (opsional)
+if ! pgrep -x "tor" > /dev/null; then
+    nohup tor > /dev/null 2>&1 &
+    sleep 2
+fi
+
+
+
+# ===== ZUHRI FINANCE =====
+
+
+
+
+
+
+# Autentikasi terpusat
+alias auth="python ~/zuhri_os/id/zuhri_auth.py"
+
+# Inti sistem
+
+# Keamanan & Kripto
+
+# AI
+
+# Jaringan
+
+# Visi & Suara
+
+# Dark Web
+
+# Prediktif
+
+# Darurat
+
+# Keuangan
+
+# Sistem
+
+# Bahasa
+
+# ===== AUTO-START =====
+# Auto-start Tor (opsional)
+if ! pgrep -x "tor" > /dev/null; then
+    nohup tor > /dev/null 2>&1 &
+    sleep 2
+fi
+
+# ===== ZUHRI NETWORK — PERMANEN =====
+# Autentikasi terpusat
+alias id="python ~/zuhri_os/id/zuhri_id.py"
+alias id-backup="python ~/zuhri_os/id/id_backup.py"
+alias auth="python ~/zuhri_os/id/zuhri_auth.py"
+
+# Inti sistem
+alias zos="python ~/zuhri_os/zuhri_os.py"
+alias zuhri-os="python ~/zuhri_os/zuhri_os.py"
+alias key="bash ~/kosmik/key.sh"
+
+# Keamanan & Kripto
+alias shield="python ~/zuhri_os/security/security_shield.py"
+alias scan="python ~/zuhri_os/security/security_shield.py scan"
+alias wipe="python ~/zuhri_os/security/security_shield.py wipe"
+alias crypto="python ~/zuhri_os/crypto/zuhri_crypto.py"
+
+# AI
+
+# Jaringan
+alias mesh="python ~/kosmik/p2p/mesh_node.py"
+alias mesh-scan="python ~/kosmik/p2p/mesh_discovery.py"
+
+# Visi & Suara
+alias vision="python ~/kosmik/vision/edge_vision.py"
+alias voice="python ~/kosmik/voice/voice_commander.py"
+
+# Dark Web
+
+# Prediktif
+
+# Darurat
+alias sos="python ~/kosmik/sos_beacon.py"
+
+# Keuangan
+alias wallet="python ~/zuhri_os/wallet/wallet.py"
+
+# Sistem
+alias health="python ~/health.py"
+alias version="python ~/zuhri_os/version/version_monitor.py"
+alias update="python ~/updater.py"
+alias manifest="python ~/zuhri_os/backup/backup_manager.py manifest"
+
+# Bahasa
+alias translate="python ~/zuhri_os/translator/translator.py"
+
+# ===== AUTO-START =====
+# Auto-start Tor (opsional)
+if ! pgrep -x "tor" > /dev/null; then
+    nohup tor > /dev/null 2>&1 &
+    sleep 2
+fi
+
+
+
+# ===== ZUHRI FINANCE =====
+
+
+
+
+
+
+# ===== ZUHRI LIBRARY =====
+
+alias library="python ~/zuhri_os/library/zuhri_library.py"
+alias lib="python ~/zuhri_os/library/zuhri_library.py"
+alias zuhri="python ~/zuhri_os/menu.py"
+alias menu="python ~/zuhri_os/menu.py"
+
+
+
+# ===== EKOSISTEM ZUHRI — PERMANEN =====
+alias ekosistem-zuhri="python ~/zuhri_os/menu.py"
+
+# ===== ZUHRI EDU — PERMANEN =====
+alias edu="python ~/zuhri_os/edu/zuhri_edu.py"
+alias zuhri_edu="python ~/zuhri_os/edu/zuhri_edu.py"
+
+
+# ===== ZUHRI PERINGATAN =====
+alias warning="python ~/zuhri_os/peringatan/zuhri_peringatan.py"
+alias alert="python ~/zuhri_os/peringatan/zuhri_peringatan.py"
+
+
+# ===== ZUHRI KURIKULUM K-8.0 =====
+alias k8="python ~/zuhri_os/kurikulum/zuhri_kurikulum.py"
+alias k-8="python ~/zuhri_os/kurikulum/zuhri_kurikulum.py"
+
+alias peringatan="python ~/zuhri_os/peringatan/zuhri_peringatan.py"
+alias kurikulum="python ~/zuhri_os/kurikulum/zuhri_kurikulum.py"
+alias genmodul="python ~/zuhri_os/kurikulum/generate_modul.py"
+alias spiritual="python ~/zuhri_os/spiritual/zuhri_spiritual.py"
+
+# ===== ZUHRI FREKUENSI =====
+
+alias frekuensi="python ~/zuhri_os/frekuensi/zuhri_frekuensi.py"
+alias freq="python ~/zuhri_os/frekuensi/zuhri_frekuensi.py"
+alias finance="python ~/zuhri_os/finance/zuhri_finance.py"
+alias predictive="python ~/zuhri_os/predictive/zuhri_predictive.py"
+alias energi="python ~/zuhri_os/energi/zuhri_energi.py"
+alias energy="python ~/zuhri_os/energi/zuhri_energi.py"
+alias botnet="python ~/zuhri_os/botnet/zuhri_botnet.py"
+alias hunter="python ~/zuhri_os/botnet/zuhri_botnet.py"
+alias chain="python ~/zuhri_os/chain/zuhri_chain.py"
+alias zchain="python ~/zuhri_os/chain/zuhri_chain.py"
+
+# ===== ZUHRI BACKUP & RESTORE =====
+
+
+# ===== ZUHRI BACKUP & RESTORE =====
+alias backup="python ~/zuhri_os/backup/backup_manager.py backup"
+alias restore="python ~/zuhri_os/backup/backup_manager.py restore"
+alias list-backup="python ~/zuhri_os/backup/backup_manager.py list"
+alias verify-backup="python ~/zuhri_os/backup/backup_manager.py verify"
+alias export-backup="python ~/zuhri_os/backup/backup_manager.py export"
+alias cleanup-backup="python ~/zuhri_os/backup/backup_manager.py cleanup"
+alias backup-mgr="python ~/zuhri_os/backup/backup_manager.py"
+
+alias did="python ~/zuhri_os/did/zuhri_did.py"
+alias enkripsi="python ~/zuhri_os/enkripsi/zuhri_enkripsi.py"
+alias encrypt="python ~/zuhri_os/enkripsi/zuhri_enkripsi.py"
+alias z="python ~/zuhri_os/autoroute/zuhri_autoroute.py"
+alias docs="python ~/zuhri_os/docs/zuhri_docs.py"
+alias panduan="python ~/zuhri_os/onboarding/welcome.py"
+
+# ===== ZUHRI AI =====
+alias ai-setup='bash ~/zuhri_os/ai/setup_ai.sh'
+
+
+# ===== ZUHRI AI =====
+alias ai-chat='python ~/zuhri_os/ai/zuhri_ai.py'
+
+alias ai="ollama run zuhri-id"
+
+# ===== ZUHRI NETWORK =====
+alias id="python ~/zuhri_os/id/zuhri_id.py"
+alias crypto="python ~/zuhri_os/crypto/zuhri_crypto.py"
+alias mesh="python ~/kosmik/p2p/mesh_node.py"
+alias sos="python ~/kosmik/sos_beacon.py beacon"
+alias docs="python ~/zuhri_os/docs/zuhri_docs.py"
+
+export PYTHONPATH="$HOME/zuhri_os:$HOME/zuhri_os/id:$HOME/kosmik:$HOME/kosmik/p2p:$PYTHONPATH"
+alias dark-web="bash ~/zuhri_os/darkweb/dark-web"
+alias darkweb="bash ~/zuhri_os/darkweb/dark-web"
+
+# ===== ZUHRI TRADISIONAL =====
+
+alias tradisional="python ~/zuhri_os/tradisional/zuhri_tradisional.py"
+alias herbal="python ~/zuhri_os/tradisional/zuhri_tradisional.py"
+alias jamu="python ~/zuhri_os/tradisional/zuhri_tradisional.py"
+
+# ===== ZUHRI DEEP ACCESS =====
+alias deep="bash ~/zuhri_os/deepaccess/zuhri-deep"
+alias zuhri-deep="bash ~/zuhri_os/deepaccess/zuhri-deep"
+alias zuhri-search="bash ~/zuhri_os/formalism/zuhri-search"
+alias zsearch="bash ~/zuhri_os/formalism/zuhri-search"
+
+
+# ===== ZUHRI ECHO-CORE =====
+
+alias echocore="python ~/zuhri_os/echocore/zuhri_echocore.py"
+alias echo-core="python ~/zuhri_os/echocore/zuhri_echocore.py"
+alias quantum="python ~/zuhri_os/echocore/zuhri_echocore.py"
+
+# ===== ZUHRI TOR SHIELD =====
+
+alias torshield="python ~/zuhri_os/torshield/zuhri_torshield.py"
+alias tsh="python ~/zuhri_os/torshield/zuhri_torshield.py"
+
+# ===== ZUHRI DARK-WEB =====
+alias dark-web="bash ~/zuhri_os/darkweb/dark-web"
+alias darkweb="bash ~/zuhri_os/darkweb/dark-web"
+
+
+# ===== ZUHRI SOCIAL =====
+
+alias social="python ~/zuhri_os/social/zuhri_social.py"
+alias zsocial="python ~/zuhri_os/social/zuhri_social.py"
+
+# ===== ZUHRI WEB3 HUB =====
+
+alias web3="python ~/zuhri_os/web3hub/zuhri_web3.py"
+alias zweb3="python ~/zuhri_os/web3hub/zuhri_web3.py"
+
+# ===== ZUHRI WEB4 — AI AGENT =====
+
+alias web4="python ~/zuhri_os/web4/zuhri_web4.py"
+alias agent="python ~/zuhri_os/web4/zuhri_web4.py"
+
+# ===== ZUHRI SPIRITUAL ULTIMATE =====
+
+
+# ===== ZUHRI COMMUNITY =====
+
+alias community="python ~/zuhri_os/community/zuhri_community.py"
+alias komunitas="python ~/zuhri_os/community/zuhri_community.py"
+
+# ===== ZUHRI BOT KRIPTOGRAFI =====
+
+
+# ===== ZUHRI FINANSIAL PRO =====
+
+
+# ===== ZUHRI FINANSIAL ULTIMATE =====
+
+alias finultimate="python ~/zuhri_os/finansialultimate/zuhri_finansialultimate.py"
+alias finansial="python ~/zuhri_os/finansialultimate/zuhri_finansialultimate.py"
+
+# ===== ZUHRI SECURITY SUITE =====
+
+alias security="python ~/zuhri_os/securitysuite/zuhri_securitysuite.py"
+alias secsuite="python ~/zuhri_os/securitysuite/zuhri_securitysuite.py"
+
+# ===== ZUHRI DIGITAL HUB =====
+
+alias digital="python ~/zuhri_os/digitalhub/zuhri_digitalhub.py"
+alias digihub="python ~/zuhri_os/digitalhub/zuhri_digitalhub.py"
+
+# ===== ZUHRI MONITORING SUITE =====
+
+alias monitoring="python ~/zuhri_os/monitoringsuite/zuhri_monitoringsuite.py"
+alias monsuite="python ~/zuhri_os/monitoringsuite/zuhri_monitoringsuite.py"
+alias ekosistem_zuhri="python ~/zuhri_os/menu.py"
+alias ez="python ~/zuhri_os/menu.py"
+
+# ===== ZUHRI P2P-MESH V2.0 =====
+alias mesh="python ~/kosmik/p2p/mesh_node.py"
+alias mesh-scan="python ~/kosmik/p2p/mesh_discovery.py"
+alias videocall="python ~/kosmik/p2p/mesh_node.py"
+alias voicecall="python ~/kosmik/p2p/mesh_node.py"
+
+
+# ===== ZUHRI P2P-MESH V2.0 =====
+alias mesh="python ~/kosmik/p2p/mesh_node_v2.py"
+alias mesh-v2="python ~/kosmik/p2p/mesh_node_v2.py"
+alias mesh-scan="python ~/kosmik/p2p/mesh_discovery_v2.py"
+alias mesh-scan-v2="python ~/kosmik/p2p/mesh_discovery_v2.py"
+
+# Alias untuk V1 (backup)
+alias mesh-v1="python ~/kosmik/p2p/mesh_node_v1.py.bak"
+
