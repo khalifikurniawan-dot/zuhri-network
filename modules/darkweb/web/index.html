@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌑 Zuhri Dark-Web Gateway v3.0</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Courier New', monospace;
+    background: #0a0a0a;
+    color: #00ff41;
+    min-height: 100vh;
+    padding: 20px;
+}
+.container { max-width: 900px; margin: 0 auto; }
+.header {
+    text-align: center;
+    padding: 30px 20px;
+    border: 2px solid #00ff41;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    box-shadow: 0 0 30px rgba(0,255,65,0.3);
+}
+.header h1 {
+    font-size: 28px;
+    color: #00ff41;
+    text-shadow: 0 0 10px #00ff41;
+    margin-bottom: 10px;
+}
+.header .status {
+    color: #00cc33;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.header .ip {
+    color: #ffaa00;
+    font-size: 16px;
+    font-weight: bold;
+}
+.section-title {
+    color: #00ff41;
+    font-size: 18px;
+    margin: 25px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #00ff41;
+    text-shadow: 0 0 5px #00ff41;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+.card {
+    background: #111;
+    border: 1px solid #00ff41;
+    border-radius: 8px;
+    padding: 15px;
+    text-decoration: none;
+    color: #00ff41;
+    transition: all 0.3s;
+    display: block;
+}
+.card:hover {
+    background: #00ff41;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px #00ff41;
+    transform: translateY(-3px);
+}
+.card .icon { font-size: 24px; margin-bottom: 8px; }
+.card .name { font-size: 14px; font-weight: bold; margin-bottom: 5px; }
+.card .desc { font-size: 11px; opacity: 0.7; }
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: #00aa33;
+    font-size: 12px;
+}
+.warning {
+    background: #330000;
+    border: 1px solid #ff3333;
+    color: #ff6666;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🌑 ZUHRI DARK-WEB GATEWAY v3.0</h1>
+        <div class="status">Protokol K-8.0 | Tor + DNSCrypt + Proxychains</div>
+        <div class="ip" id="ip">⏳ Memuat IP Tor...</div>
+    </div>
+    
+    <div class="warning">
+        ⚠️ <strong>PERINGATAN:</strong> Gunakan dengan etika. Jangan akses konten ilegal.
+        Jangan share data pribadi. Anda bertanggung jawab atas aksi Anda.
+    </div>
+    
+    <div class="section-title">🔍 MESIN PENCARI</div>
+    <div class="grid">
+        <a href="http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/" class="card">
+            <div class="icon">🔍</div>
+            <div class="name">Ahmia</div>
+            <div class="desc">Mesin pencari .onion</div>
+        </a>
+        <a href="https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/" class="card">
+            <div class="icon">🦆</div>
+            <div class="name">DuckDuckGo</div>
+            <div class="desc">Pencarian anonim</div>
+        </a>
+        <a href="http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77cjkdqd.onion/" class="card">
+            <div class="icon">🔥</div>
+            <div class="name">Torch</div>
+            <div class="desc">Mesin pencari alternatif</div>
+        </a>
+        <a href="http://darksearch3vpvk4.onion" class="card">
+            <div class="icon">🌐</div>
+            <div class="name">DarkSearch</div>
+            <div class="desc">API pencarian</div>
+        </a>
+    </div>
+    
+    <div class="section-title">📚 DIREKTORI</div>
+    <div class="grid">
+        <a href="http://zqktlwi4fecvo6ri.onion/wiki/index.php/Main_Page" class="card">
+            <div class="icon">📚</div>
+            <div class="name">Hidden Wiki</div>
+            <div class="desc">Daftar situs .onion</div>
+        </a>
+        <a href="http://onionlandbakyt3j5.onion" class="card">
+            <div class="icon">📖</div>
+            <div class="name">OnionLand</div>
+            <div class="desc">Direktori .onion</div>
+        </a>
+    </div>
+    
+    <div class="section-title">📰 BERITA TOR MIRROR</div>
+    <div class="grid">
+        <a href="https://www.bbcnewsv2vjtpsuy.onion" class="card">
+            <div class="icon">📰</div>
+            <div class="name">BBC Tor</div>
+            <div class="desc">BBC News via Tor</div>
+        </a>
+        <a href="https://www.nytimesn7cgmftshazwhfgzm37qxb44r64ytbb2dj3x62d2lljsciiyd.onion" class="card">
+            <div class="icon">📰</div>
+            <div class="name">NYT Tor</div>
+            <div class="desc">New York Times via Tor</div>
+        </a>
+        <a href="https://dwnewsvbnvpjcpf.onion" class="card">
+            <div class="icon">📰</div>
+            <div class="name">DW Tor</div>
+            <div class="desc">Deutsche Welle via Tor</div>
+        </a>
+        <a href="https://propub3r6espa33w.onion" class="card">
+            <div class="icon">📰</div>
+            <div class="name">ProPublica</div>
+            <div class="desc">Jurnalisme investigasi</div>
+        </a>
+    </div>
+    
+    <div class="section-title">🛠️ TOOLS ANONIM</div>
+    <div class="grid">
+        <a href="https://protonmailrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion" class="card">
+            <div class="icon">📧</div>
+            <div class="name">ProtonMail</div>
+            <div class="desc">Email anonim</div>
+        </a>
+        <a href="http://ris3upkzw7vbm5d.onion" class="card">
+            <div class="icon">🔐</div>
+            <div class="name">Riseup</div>
+            <div class="desc">Layanan aktivis</div>
+        </a>
+        <a href="http://secrdrop5wyphb5x.onion" class="card">
+            <div class="icon">🕵️</div>
+            <div class="name">SecureDrop</div>
+            <div class="desc">Whistleblower platform</div>
+        </a>
+    </div>
+    
+    <div class="footer">
+        🌌 ZUHRI NETWORK — Kemandirian Digital<br>
+        Protokol K-8.0 | Gen ZUH-8-9-0-K-8.0<br>
+        ∞ — TERBUKA
+    </div>
+</div>
+
+<script>
+// Update IP
+async function updateIP() {
+    try {
+        const response = await fetch('ip.txt?t=' + Date.now());
+        const ip = await response.text();
+        document.getElementById('ip').textContent = '✅ IP Tor: ' + ip;
+    } catch (e) {
+        document.getElementById('ip').textContent = '⚠️ IP: Cek manual (torstatus)';
+    }
+}
+setInterval(updateIP, 10000);
+updateIP();
+</script>
+</body>
+</html>
