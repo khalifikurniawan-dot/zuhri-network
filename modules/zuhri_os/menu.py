@@ -1,27 +1,42 @@
 #!/data/data/com.termux/files/usr/bin/python
 """
-EKOSISTEM ZUHRI — MENU UTAMA
+EKOSISTEM ZUHRI — MENU PREMIUM
 Protokol: K-8.0 | Gen: ZUH-8-9-0-K-8.0
+ANSI 256 Color • ASCII Art • Animation
 """
 
-import os, json, subprocess, random
+import os, sys, json, subprocess, random, time
 
 HOME = os.path.expanduser("~")
 ID_FILE = os.path.join(HOME, "zuhri_os", "id", "identity.json")
 
-RESET="\033[0m"; BOLD="\033[1m"; DIM="\033[2m"
-RED="\033[91m"; GREEN="\033[92m"; YELLOW="\033[93m"
-BLUE="\033[94m"; MAGENTA="\033[95m"; CYAN="\033[96m"
-GOLD="\033[93m"; WHITE="\033[97m"
+# ===== ANSI 256 COLOR =====
+R = "\033[0m"
+B = "\033[1m"
+D = "\033[2m"
+
+# Warna dasar
+CYAN = "\033[38;5;51m"
+MAGENTA = "\033[38;5;201m"
+GOLD = "\033[38;5;220m"
+GREEN = "\033[38;5;46m"
+RED = "\033[38;5;196m"
+BLUE = "\033[38;5;21m"
+PURPLE = "\033[38;5;141m"
+PINK = "\033[38;5;213m"
+ORANGE = "\033[38;5;208m"
+WHITE = "\033[38;5;231m"
+GRAY = "\033[38;5;244m"
+NEON = "\033[38;5;118m"
+ICE = "\033[38;5;159m"
+
+# Gradasi
+G1 = "\033[38;5;51m"
+G2 = "\033[38;5;45m"
+G3 = "\033[38;5;39m"
+G4 = "\033[38;5;33m"
 
 SYMBOLS = ["◈","◇","◆","◉","◎","●","○","✦","✧","★","☆"]
-
-def gradient(text):
-    colors = [CYAN, MAGENTA, GOLD]
-    r = ""
-    for i, ch in enumerate(text):
-        r += f"{colors[i % 3]}{ch}{RESET}"
-    return r
 
 def clear(): os.system('clear')
 
@@ -40,251 +55,230 @@ def ollama_ok():
 
 def run(c): os.system(c)
 
-def print_header():
+def animate_boot():
+    """Animasi boot singkat"""
     clear()
-    print(f"\n{DIM}{random.choice(SYMBOLS)} {random.choice(SYMBOLS)} {random.choice(SYMBOLS)}{RESET}")
-    print(f"{gradient('  ╔══════════════════════════════════════════════════════════════════╗  ')}")
-    print(f"{gradient('  ║')}  {BOLD}{GOLD}🌌 EKOSISTEM ZUHRI{RESET}  {gradient('║')}")
-    print(f"{gradient('  ╠══════════════════════════════════════════════════════════════════╣  ')}")
-    print(f"{gradient('  ║')}  {CYAN}PROTOKOL: {GOLD}K-8.0{RESET}     {CYAN}GEN: {GOLD}ZUH-8-9-0-K-8.0{RESET}        {gradient('║')}")
-    print(f"{gradient('  ║')}  {CYAN}RESONANSI: {GOLD}0-8-9 — SEIMBANG{RESET}                          {gradient('║')}")
-    print(f"{gradient('  ╚══════════════════════════════════════════════════════════════════╝  ')}")
+    boot = [
+        f"{G1}[BOOT]{R} Zuhri Core...",
+        f"{G2}[BOOT]{R} Fluid-Core...",
+        f"{G3}[BOOT]{R} Echo-Synapse...",
+        f"{G4}[BOOT]{R} Resonansi 0-8-9...",
+        f"{NEON}[BOOT]{R} ✅ ONLINE",
+    ]
+    for line in boot:
+        print(f"  {line}")
+        time.sleep(0.15)
+    print()
+
+def print_logo():
+    """ASCII Logo Zuhri"""
+    logo = f"""{G1}
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║{MAGENTA}  ███████╗██╗   ██╗██╗  ██╗██████╗ ██╗                       {G1}║
+  ║{MAGENTA}  ╚══███╔╝██║   ██║██║  ██║██╔══██╗██║                       {G1}║
+  ║{MAGENTA}    ███╔╝ ██║   ██║███████║██████╔╝██║                       {G1}║
+  ║{MAGENTA}   ███╔╝  ██║   ██║██╔══██║██╔══██╗██║                       {G1}║
+  ║{MAGENTA}  ███████╗╚██████╔╝██║  ██║██║  ██║██║                       {G1}║
+  ║{MAGENTA}  ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝                       {G1}║
+  ╠══════════════════════════════════════════════════════════════════╣
+  ║{GOLD}        🌌 EKOSISTEM ZUHRI  •  PREMIUM EDITION  🌌              {G1}║
+  ╠══════════════════════════════════════════════════════════════════╣
+  ║{CYAN}  PROTOKOL: {GOLD}K-8.0{R}          {CYAN}GEN: {GOLD}ZUH-8-9-0-K-8.0{R}              {G1}║
+  ║{CYAN}  RESONANSI: {NEON}0-8-9 — SEIMBANG{R}                                {G1}║
+  ╚══════════════════════════════════════════════════════════════════╝{R}
+"""
+    print(logo)
 
 def print_operator():
     i = load_id()
-    print()
+    print(f"  {D}{'─' * 66}{R}")
     if i:
-        print(f"  {GOLD}👤{RESET} {BOLD}{i['name']}{RESET}")
-        print(f"  {GOLD}🆔{RESET} {DIM}{i['zuhri_id'][:32]}...{RESET}")
+        print(f"  {GOLD}👤{R} {B}{WHITE}{i['name']}{R}")
+        print(f"  {GOLD}🆔{R} {GRAY}{i['zuhri_id'][:40]}...{R}")
     else:
-        print(f"  {YELLOW}⚠️  Belum punya Zuhri ID — pilih 1{RESET}")
-    t = f"{GREEN}✅{RESET}" if tor_ok() else f"{RED}❌{RESET}"
-    o = f"{GREEN}✅{RESET}" if ollama_ok() else f"{RED}❌{RESET}"
-    print(f"  {GOLD}📊{RESET} Tor: {t}  |  Ollama: {o}\n")
+        print(f"  {RED}⚠️  Belum punya Zuhri ID — pilih 1{R}")
+    
+    t = f"{NEON}✅{R}" if tor_ok() else f"{RED}❌{R}"
+    o = f"{NEON}✅{R}" if ollama_ok() else f"{RED}❌{R}"
+    print(f"  {GOLD}📊{R} Tor: {t}   {GOLD}Ollama:{R} {o}")
+    print(f"  {D}{'─' * 66}{R}\n")
+
+def section(title, color, items):
+    """Cetak section dengan warna"""
+    print(f"{color}  ┏━━━ {B}{title}{R} {color}{'━' * (55 - len(title))}┓{R}")
+    for num, icon, name, desc in items:
+        print(f"{color}  ┃{R} {GOLD}{num:>2}.{R} {icon} {B}{WHITE}{name:<20}{R} {GRAY}→ {desc}{R}")
+    print(f"{color}  ┗{'━' * 64}┛{R}\n")
 
 def print_menu():
-    print(f"""{BOLD}{RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🚨 ZUHRI PERINGATAN — DARURAT & BENCANA (PRIORITAS)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+    section("🚨 PRIORITAS — DARURAT", RED, [
+        (22, "🚨", "ZUHRI PERINGATAN", "Prediksi bencana")
+    ])
+    
+    section("🛡️  KEAMANAN & PERISAI", MAGENTA, [
+        (40, "🛡️ ", "TOR SHIELD", "Perisai Tor 5 layer"),
+        (39, "🛡️ ", "ECHO-CORE", "Post-Quantum Shield"),
+        (4,  "🔐", "ZUHRI SECURITY", "Keamanan berlapis"),
+    ])
+    
+    section("🎨 KREATIVITAS & KOMUNIKASI", PINK, [
+        (41, "🎨", "ZUHRI ART", "Seni & kreativitas"),
+        (42, "👥", "ZUHRI SOCIAL", "Media sosial P2P"),
+        (43, "📧", "ZUHRI GMAIL", "Email lokal"),
+    ])
+    
+    section("🏥 KEHIDUPAN", GREEN, [
+        (44, "🏥", "ZUHRI MED", "Kesehatan dasar"),
+        (45, "🌤️ ", "ZUHRI WEATHER", "Cuaca & iklim"),
+        (46, "🗺️ ", "ZUHRI MAPS", "Peta & lokasi"),
+        (38, "🌿", "ZUHRI TRADISIONAL", "Obat & jamu"),
+    ])
+    
+    section("🕌 SPIRITUAL & KOSMIK", PURPLE, [
+        (24, "🕌", "ZUHRI SPIRITUAL", "Fatwa Kehidupan"),
+        (25, "📡", "ZUHRI FREKUENSI", "Resonansi & anomali"),
+        (26, "🔮", "ZUHRI PREDICTIVE", "Terminal prediktif"),
+        (27, "⚡", "ZUHRI ENERGI", "Monitor baterai"),
+    ])
+    
+    section("🌟 IDENTITAS & NETWORK", CYAN, [
+        (1,  "🆔", "ZUHRI ID", "Identitas digital"),
+        (2,  "🛂", "ZUHRI PASSPORT", "Passport global"),
+        (3,  "🔐", "ZUHRI KRIPTOGRAFI", "AES-256, Vault"),
+        (5,  "📡", "ZUHRI P2P-MESH", "Jaringan offline"),
+        (6,  "🔍", "ZUHRI MESH-SCAN", "Cari node"),
+        (7,  "🆘", "ZUHRI SOS-BEACON", "Sinyal darurat"),
+    ])
+    
+    section("🧠 AI & DEMOKRASI & FINANSIAL", GOLD, [
+        (8,  "🧠", "ZUHRI AI", "AI offline"),
+        (9,  "🔍", "ZUHRI VISION", "Deteksi objek"),
+        (10, "🌍", "ZUHRI TRANSLATE", "Terjemahan"),
+        (12, "🗳️ ", "ZUHRI VOTE", "Voting digital"),
+        (13, "📜", "ZUHRI CONTRACT", "Kontrak pintar"),
+        (14, "💰", "ZUHRI FINANSIAL", "Keuangan mandiri"),
+        (15, "🪙", "ZUHRI WALLET", "Dompet crypto"),
+    ])
+    
+    section("📚 PENGETAHUAN & CHAIN", BLUE, [
+        (16, "🎓", "ZUHRI EDU", "Kursus & sertifikat"),
+        (17, "📚", "ZUHRI LIBRARY", "Perpustakaan"),
+        (21, "🧬", "ZUHRI KURIKULUM", "K-8.0 Komprehensif"),
+        (29, "⛓️ ", "ZUHRI CHAIN", "Database terdesentralisasi"),
+        (30, "🆔", "ZUHRI DID", "Decentralized ID"),
+        (31, "🔐", "ZUHRI ENKRIPSI", "Enkripsi lengkap"),
+    ])
+    
+    section("🌐 DEEP & DARK WEB", PURPLE, [
+        (34, "🌐", "ZUHRI DEEP ACCESS", "Layer 2 & 3"),
+        (35, "🌑", "ZUHRI DARK-WEB", "Gateway + panduan"),
+        (36, "🧬", "FORMALISM SEARCH", "Logika+Data+Intuisi"),
+        (37, "🪞", "CERMIN BAYANGAN", "Meta-pencarian"),
+    ])
+    
+    section("⚙️  SISTEM & DOKUMENTASI", GRAY, [
+        (18, "💻", "ZUHRI OS", "Sistem lengkap"),
+        (19, "💻", "ZUHRI HEALTH", "RAM & storage"),
+        (20, "💾", "ZUHRI BACKUP", "Backup konfigurasi"),
+        (23, "📖", "PANDUAN", "Onboarding"),
+        (32, "🚦", "AUTO-ROUTING", "Router otomatis"),
+        (33, "📚", "ZUHRI DOCS", "Sejarah & visi"),
+    ])
 
-  {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI TOR SHIELD — PERISAI BERLAPIS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}40.{RESET} {BOLD}🛡️  ZUHRI TOR SHIELD{RESET}       → {DIM}Perisai Tor berlapis (5 layer){RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI ECHO-CORE — POST-QUANTUM SHIELD
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}39.{RESET} {BOLD}🛡️  ZUHRI ECHO-CORE{RESET}       → {DIM}Perisai Kuantum (PQC){RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🎨 ZUHRI ART & SOCIAL — KREATIVITAS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}41.{RESET} {BOLD}🎨 ZUHRI ART{RESET}              → {DIM}Kreativitas digital (ASCII, puisi){RESET}
-  {GOLD}42.{RESET} {BOLD}👥 ZUHRI SOCIAL{RESET}           → {DIM}Media sosial P2P{RESET}
-  {GOLD}43.{RESET} {BOLD}📧 ZUHRI GMAIL{RESET}            → {DIM}Email lokal offline{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🏥 ZUHRI MED & WEATHER & MAPS — KEHIDUPAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}44.{RESET} {BOLD}🏥 ZUHRI MED{RESET}               → {DIM}Kesehatan dasar (catatan, obat){RESET}
-  {GOLD}45.{RESET} {BOLD}🌤️  ZUHRI WEATHER{RESET}           → {DIM}Cuaca & iklim{RESET}
-  {GOLD}46.{RESET} {BOLD}🗺️  ZUHRI MAPS{RESET}              → {DIM}Peta & lokasi (GPS){RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🕌 ZUHRI SPIRITUAL — ILMU HATI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}24.{RESET} {BOLD}🕌 ZUHRI SPIRITUAL{RESET}        → {DIM}Fatwa Kehidupan & Yolhan Wijaya{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📡 ZUHRI FREKUENSI — RESONANSI & ANOMALI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}25.{RESET} {BOLD}📡 ZUHRI FREKUENSI{RESET}        → {DIM}Monitoring gelombang & anomali{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🔮 ZUHRI PREDICTIVE — TERMINAL PREDIKTIF
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}26.{RESET} {BOLD}🔮 ZUHRI PREDICTIVE{RESET}       → {DIM}Terminal belajar kebiasaan{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⚡ ZUHRI ENERGI — KEMANDIRIAN ENERGI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}27.{RESET} {BOLD}⚡ ZUHRI ENERGI{RESET}           → {DIM}Monitor baterai & optimasi daya{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🛡️  ZUHRI BOTNET HUNTER — KEAMANAN JARINGAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}28.{RESET} {BOLD}🛡️  ZUHRI BOTNET HUNTER{RESET}    → {DIM}Deteksi ancaman jaringan{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⛓️  ZUHRI CHAIN & DID — DECENTRALIZED
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}29.{RESET} {BOLD}⛓️  ZUHRI CHAIN{RESET}            → {DIM}Database terdesentralisasi{RESET}
-  {GOLD}30.{RESET} {BOLD}🆔 ZUHRI DID{RESET}              → {DIM}Decentralized identifier{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🔐 ZUHRI ENKRIPSI — KEAMANAN DATA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}31.{RESET} {BOLD}🔐 ZUHRI ENKRIPSI{RESET}         → {DIM}Enkripsi + Steganografi + Password{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌐 ZUHRI DEEP ACCESS — LAPISAN 2 & 3
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}34.{RESET} {BOLD}🌐 ZUHRI DEEP ACCESS{RESET}      → {DIM}Deep Web + Dark Web (ilmiah){RESET}
-  {GOLD}35.{RESET} {BOLD}🌑 ZUHRI DARK-WEB{RESET}         → {DIM}Dark-Web Gateway + panduan{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🧬 ZUHRI FORMALISM SEARCH — LAPISAN 4
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}36.{RESET} {BOLD}🧬 ZUHRI FORMALISM SEARCH{RESET}  → {DIM}Logika + Data + Intuisi{RESET}
-  {GOLD}37.{RESET} {BOLD}🪞 CERMIN BAYANGAN{RESET}         → {DIM}Meta-pencarian tersembunyi{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌿 ZUHRI TRADISIONAL — OBAT & JAMU
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}38.{RESET} {BOLD}🌿 ZUHRI TRADISIONAL{RESET}       → {DIM}Obat & Jamu Nusantara{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌟 ZUHRI CORE — IDENTITAS & KEAMANAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}1.{RESET}  🆔 {BOLD}ZUHRI ID{RESET}               → {DIM}Identitas digital mandiri{RESET}
-  {GOLD}2.{RESET}  🛂 {BOLD}ZUHRI PASSPORT{RESET}         → {DIM}Passport lintas negara{RESET}
-  {GOLD}3.{RESET}  🔐 {BOLD}ZUHRI KRIPTOGRAFI{RESET}      → {DIM}Enkripsi AES-256, Vault{RESET}
-  {GOLD}4.{RESET}  🛡️  {BOLD}ZUHRI SECURITY{RESET}         → {DIM}Keamanan berlapis{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📡 ZUHRI NETWORK — KOMUNIKASI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}5.{RESET}  📡 {BOLD}ZUHRI P2P-MESH{RESET}         → {DIM}Jaringan darurat offline{RESET}
-  {GOLD}6.{RESET}  🔍 {BOLD}ZUHRI MESH-SCAN{RESET}       → {DIM}Cari node di jaringan{RESET}
-  {GOLD}7.{RESET}  🆘 {BOLD}ZUHRI SOS-BEACON{RESET}      → {DIM}Sinyal darurat offline{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🧠 ZUHRI AI — KECERDASAN BUATAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}8.{RESET}  🧠 {BOLD}ZUHRI AI{RESET}               → {DIM}AI pribadi offline{RESET}
-  {GOLD}9.{RESET}  🔍 {BOLD}ZUHRI VISION{RESET}           → {DIM}Deteksi objek kamera{RESET}
-  {GOLD}10.{RESET} 🌍 {BOLD}ZUHRI TRANSLATE{RESET}        → {DIM}Terjemahan offline{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🗳️  ZUHRI DEMOKRASI — TATA KELOLA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}12.{RESET} 🗳️  {BOLD}ZUHRI VOTE{RESET}            → {DIM}Voting digital{RESET}
-  {GOLD}13.{RESET} 📜 {BOLD}ZUHRI CONTRACT{RESET}        → {DIM}Kontrak pintar{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  💰 ZUHRI FINANSIAL — KEUANGAN MANDIRI
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}14.{RESET} 💰 {BOLD}ZUHRI FINANSIAL{RESET}       → {DIM}Keuangan mandiri{RESET}
-  {GOLD}15.{RESET} 🪙 {BOLD}ZUHRI WALLET{RESET}          → {DIM}Dompet crypto offline{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📚 ZUHRI EDU & LIBRARY — PENGETAHUAN
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}16.{RESET} 🎓 {BOLD}ZUHRI EDU{RESET}             → {DIM}Kursus & sertifikat{RESET}
-  {GOLD}17.{RESET} 📚 {BOLD}ZUHRI LIBRARY{RESET}         → {DIM}Perpustakaan offline{RESET}
-  {GOLD}21.{RESET} 🧬 {BOLD}ZUHRI KURIKULUM K-8.0{RESET}  → {DIM}30 kurikulum komprehensif{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⚙️  ZUHRI OS — SISTEM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}18.{RESET} 💻 {BOLD}ZUHRI OS{RESET}              → {DIM}Sistem lengkap{RESET}
-  {GOLD}19.{RESET} 💻 {BOLD}ZUHRI HEALTH{RESET}          → {DIM}Cek RAM & storage{RESET}
-  {GOLD}20.{RESET} 💾 {BOLD}ZUHRI BACKUP{RESET}          → {DIM}Backup konfigurasi{RESET}
-  {GOLD}23.{RESET} 📖 {BOLD}Panduan{RESET}               → {DIM}Buka onboarding{RESET}
-  {GOLD}32.{RESET} 🚦 {BOLD}ZUHRI AUTO-ROUTING{RESET}     → {DIM}Router otomatis{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📚 DOKUMENTASI EKOSISTEM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}33.{RESET} {BOLD}📚 ZUHRI DOCS{RESET}             → {DIM}Sejarah • Cara Pakai • Visi • Roadmap{RESET}
-  {GOLD}0.{RESET}  🚪 Keluar
-
-""")
+def print_footer():
+    print(f"  {D}{'─' * 66}{R}")
+    print(f"  {GOLD}0.{R} {RED}🚪 KELUAR{R}")
+    print(f"  {D}{'─' * 66}{R}")
+    print(f"  {D}📡 Pilih (0-46) atau ketik 'z <kata-kunci>' untuk auto-routing{R}\n")
 
 def main():
+    animate_boot()
+    
     while True:
-        print_header()
+        clear()
+        print_logo()
         print_operator()
         print_menu()
+        print_footer()
+        
         try:
-            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-46): {RESET}").strip()
+            c = input(f"  {GOLD}🌌 Pilih Ekosistem{R}: ").strip()
+            
             if c == "0":
-                print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
-            elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
-            elif c == "2": run("python ~/zuhri_os/passport/zuhri_passport.py")
-            elif c == "3": run("python ~/zuhri_os/crypto/zuhri_crypto.py")
-            elif c == "4": run("python ~/zuhri_os/security/security_shield.py")
-            elif c == "5": run("python ~/kosmik/p2p/mesh_node.py")
-            elif c == "6": run("python ~/kosmik/p2p/mesh_discovery.py")
-            elif c == "7": run("python ~/kosmik/sos_beacon.py beacon")
-            elif c == "8": run("ai")
-            elif c == "9": run("python ~/kosmik/vision/edge_vision.py")
-            elif c == "10": run("python ~/zuhri_os/translator/translator.py")
-            elif c == "12": run("python ~/zuhri_os/vote/zuhri_vote.py")
-            elif c == "13": run("python ~/zuhri_os/contract/zuhri_contract.py")
-            elif c == "14": run("python ~/zuhri_os/finance/zuhri_finance.py")
-            elif c == "15": run("python ~/zuhri_os/wallet/wallet.py")
-            elif c == "16": run("python ~/zuhri_os/edu/zuhri_edu.py")
-            elif c == "17": run("python ~/zuhri_os/library/zuhri_library.py")
-            elif c == "18": run("python ~/zuhri_os/zuhri_os.py")
-            elif c == "19": run("python ~/health.py")
-            elif c == "20": run("python ~/zuhri_os/backup/backup_manager.py")
-            elif c == "21": run("python ~/zuhri_os/kurikulum/zuhri_kurikulum.py")
-            elif c == "22": run("python ~/zuhri_os/peringatan/zuhri_peringatan.py")
-            elif c == "23": run("python ~/zuhri_os/onboarding/welcome.py")
-            elif c == "24": run("python ~/zuhri_os/spiritual/zuhri_spiritual.py")
-            elif c == "25": run("python ~/zuhri_os/frekuensi/zuhri_frekuensi.py")
-            elif c == "26": run("python ~/zuhri_os/predictive/zuhri_predictive.py")
-            elif c == "27": run("python ~/zuhri_os/energi/zuhri_energi.py")
-            elif c == "28": run("python ~/zuhri_os/botnet/zuhri_botnet.py")
-            elif c == "29": run("python ~/zuhri_os/chain/zuhri_chain.py")
-            elif c == "30": run("python ~/zuhri_os/did/zuhri_did.py")
-            elif c == "31": run("python ~/zuhri_os/enkripsi/zuhri_enkripsi.py")
-            elif c == "32": run("python ~/zuhri_os/autoroute/zuhri_autoroute.py")
-            elif c == "33": run("python ~/zuhri_os/docs/zuhri_docs.py")
-            elif c == "34": run("bash ~/zuhri_os/deepaccess/zuhri-deep")
-            elif c == "35": run("bash ~/zuhri_os/darkweb/dark-web")
-            elif c == "36": run("bash ~/zuhri_os/formalism/zuhri-search")
-            elif c == "37": run("bash ~/zuhri_os/formalism/zuhri-search")
-            elif c == "38": run("python ~/zuhri_os/tradisional/zuhri_tradisional.py")
-            elif c == "39": run("python ~/zuhri_os/echocore/zuhri_echocore.py")
-            elif c == "40": run("python ~/zuhri_os/torshield/zuhri_torshield.py")
-            elif c == "41": run("python ~/zuhri_os/art/zuhri_art.py")
-            elif c == "42": run("python ~/zuhri_os/social/zuhri_social.py")
-            elif c == "43": run("python ~/zuhri_os/gmail/zuhri_gmail.py")
-            elif c == "44": run("python ~/zuhri_os/med/zuhri_med.py")
-            elif c == "45": run("python ~/zuhri_os/weather/zuhri_weather.py")
-            elif c == "46": run("python ~/zuhri_os/maps/zuhri_maps.py")
-            else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
-            if c != "0":
-                input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
+                clear()
+                print(f"\n  {GOLD}╔══════════════════════════════════════════════════════════════════╗")
+                print(f"  ║{MAGENTA}            👋 SAMPAI JUMPA, OPERATOR!                          {GOLD}║")
+                print(f"  ║{CYAN}            Resonansi tetap 0-8-9 — SEIMBANG                    {GOLD}║")
+                print(f"  ╚══════════════════════════════════════════════════════════════════╝{R}\n")
+                break
+            
+            # Auto-routing
+            if c.startswith("z "):
+                os.system(f"python ~/zuhri_os/autoroute/zuhri_autoroute.py {c[2:]}")
+                input(f"  {D}Enter...{R}")
+                continue
+            
+            commands = {
+                "1": "python ~/zuhri_os/id/zuhri_id.py show",
+                "2": "python ~/zuhri_os/passport/zuhri_passport.py",
+                "3": "python ~/zuhri_os/crypto/zuhri_crypto.py",
+                "4": "python ~/zuhri_os/security/security_shield.py",
+                "5": "python ~/kosmik/p2p/mesh_node.py",
+                "6": "python ~/kosmik/p2p/mesh_discovery.py",
+                "7": "python ~/kosmik/sos_beacon.py beacon",
+                "8": "ai",
+                "9": "python ~/kosmik/vision/edge_vision.py",
+                "10": "python ~/zuhri_os/translator/translator.py",
+                "12": "python ~/zuhri_os/vote/zuhri_vote.py",
+                "13": "python ~/zuhri_os/contract/zuhri_contract.py",
+                "14": "python ~/zuhri_os/finance/zuhri_finance.py",
+                "15": "python ~/zuhri_os/wallet/wallet.py",
+                "16": "python ~/zuhri_os/edu/zuhri_edu.py",
+                "17": "python ~/zuhri_os/library/zuhri_library.py",
+                "18": "python ~/zuhri_os/zuhri_os.py",
+                "19": "python ~/health.py",
+                "20": "python ~/zuhri_os/backup/backup_manager.py",
+                "21": "python ~/zuhri_os/kurikulum/zuhri_kurikulum.py",
+                "22": "python ~/zuhri_os/peringatan/zuhri_peringatan.py",
+                "23": "python ~/zuhri_os/onboarding/welcome.py",
+                "24": "python ~/zuhri_os/spiritual/zuhri_spiritual.py",
+                "25": "python ~/zuhri_os/frekuensi/zuhri_frekuensi.py",
+                "26": "python ~/zuhri_os/predictive/zuhri_predictive.py",
+                "27": "python ~/zuhri_os/energi/zuhri_energi.py",
+                "28": "python ~/zuhri_os/botnet/zuhri_botnet.py",
+                "29": "python ~/zuhri_os/chain/zuhri_chain.py",
+                "30": "python ~/zuhri_os/did/zuhri_did.py",
+                "31": "python ~/zuhri_os/enkripsi/zuhri_enkripsi.py",
+                "32": "python ~/zuhri_os/autoroute/zuhri_autoroute.py",
+                "33": "python ~/zuhri_os/docs/zuhri_docs.py",
+                "34": "bash ~/zuhri_os/deepaccess/zuhri-deep",
+                "35": "bash ~/zuhri_os/darkweb/dark-web",
+                "36": "bash ~/zuhri_os/formalism/zuhri-search",
+                "37": "bash ~/zuhri_os/formalism/zuhri-search",
+                "38": "python ~/zuhri_os/tradisional/zuhri_tradisional.py",
+                "39": "python ~/zuhri_os/echocore/zuhri_echocore.py",
+                "40": "python ~/zuhri_os/torshield/zuhri_torshield.py",
+                "41": "python ~/zuhri_os/art/zuhri_art.py",
+                "42": "python ~/zuhri_os/social/zuhri_social.py",
+                "43": "python ~/zuhri_os/gmail/zuhri_gmail.py",
+                "44": "python ~/zuhri_os/med/zuhri_med.py",
+                "45": "python ~/zuhri_os/weather/zuhri_weather.py",
+                "46": "python ~/zuhri_os/maps/zuhri_maps.py",
+            }
+            
+            if c in commands:
+                clear()
+                print(f"  {NEON}🚀 Menjalankan...{R}\n")
+                time.sleep(0.3)
+                run(commands[c])
+                input(f"\n  {D}Enter untuk kembali...{R}")
+            else:
+                print(f"  {RED}❌ Pilihan tidak valid{R}")
+                time.sleep(1)
+        
         except KeyboardInterrupt:
-            print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
+            print(f"\n  {GOLD}👋 Sampai jumpa!{R}\n")
+            break
 
 if __name__ == "__main__":
     main()
