@@ -70,30 +70,6 @@ def print_menu():
   {GOLD}22.{RESET} {BOLD}🚨 ZUHRI PERINGATAN{RESET}      → {DIM}Prediksi bencana & peringatan dini{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  💰 ZUHRI KRIPTO — QUAD-CORE BOT (BARU)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}44.{RESET} {BOLD}💰 ZUHRI KRIPTO{RESET}         → {DIM}Quad-Core Bot + Exchange + Tools{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🤖 ZUHRI WEB4 — AI AGENT OTONOM
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}43.{RESET} {BOLD}🤖 ZUHRI WEB4{RESET}           → {DIM}AI Agent Otonom{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌐 ZUHRI WEB3 HUB — PUSAT SITUS WEB3
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}42.{RESET} {BOLD}🌐 ZUHRI WEB3 HUB{RESET}       → {DIM}Situs Web3, Media Sosial, Berita{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🌐 ZUHRI SOCIAL — MEDIA SOSIAL & CHAT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
-
-  {GOLD}41.{RESET} {BOLD}🌐 ZUHRI SOCIAL{RESET}         → {DIM}Chat offline + Berita verified{RESET}
-
-{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🛡️  ZUHRI TOR SHIELD — PERISAI BERLAPIS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
@@ -106,131 +82,146 @@ def print_menu():
   {GOLD}39.{RESET} {BOLD}🛡️  ZUHRI ECHO-CORE{RESET}       → {DIM}Perisai Kuantum (PQC){RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🎨 ZUHRI ART & SOCIAL — KREATIVITAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}41.{RESET} {BOLD}🎨 ZUHRI ART{RESET}              → {DIM}Kreativitas digital (ASCII, puisi){RESET}
+  {GOLD}42.{RESET} {BOLD}👥 ZUHRI SOCIAL{RESET}           → {DIM}Media sosial P2P{RESET}
+  {GOLD}43.{RESET} {BOLD}📧 ZUHRI GMAIL{RESET}            → {DIM}Email lokal offline{RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🏥 ZUHRI MED & WEATHER & MAPS — KEHIDUPAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
+
+  {GOLD}44.{RESET} {BOLD}🏥 ZUHRI MED{RESET}               → {DIM}Kesehatan dasar (catatan, obat){RESET}
+  {GOLD}45.{RESET} {BOLD}🌤️  ZUHRI WEATHER{RESET}           → {DIM}Cuaca & iklim{RESET}
+  {GOLD}46.{RESET} {BOLD}🗺️  ZUHRI MAPS{RESET}              → {DIM}Peta & lokasi (GPS){RESET}
+
+{BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🕌 ZUHRI SPIRITUAL — ILMU HATI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}24.{RESET} {BOLD}🕌 ZUHRI SPIRITUAL{RESET}       → {DIM}Fatwa Kehidupan & Yolhan Wijaya{RESET}
+  {GOLD}24.{RESET} {BOLD}🕌 ZUHRI SPIRITUAL{RESET}        → {DIM}Fatwa Kehidupan & Yolhan Wijaya{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   📡 ZUHRI FREKUENSI — RESONANSI & ANOMALI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}25.{RESET} {BOLD}📡 ZUHRI FREKUENSI{RESET}       → {DIM}Monitoring gelombang & anomali{RESET}
+  {GOLD}25.{RESET} {BOLD}📡 ZUHRI FREKUENSI{RESET}        → {DIM}Monitoring gelombang & anomali{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🔮 ZUHRI PREDICTIVE — TERMINAL PREDIKTIF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}26.{RESET} {BOLD}🔮 ZUHRI PREDICTIVE{RESET}      → {DIM}Terminal belajar kebiasaan{RESET}
+  {GOLD}26.{RESET} {BOLD}🔮 ZUHRI PREDICTIVE{RESET}       → {DIM}Terminal belajar kebiasaan{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ⚡ ZUHRI ENERGI — KEMANDIRIAN ENERGI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}27.{RESET} {BOLD}⚡ ZUHRI ENERGI{RESET}          → {DIM}Monitor baterai & optimasi daya{RESET}
+  {GOLD}27.{RESET} {BOLD}⚡ ZUHRI ENERGI{RESET}           → {DIM}Monitor baterai & optimasi daya{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🛡️  ZUHRI BOTNET HUNTER — KEAMANAN JARINGAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}28.{RESET} {BOLD}🛡️  ZUHRI BOTNET HUNTER{RESET}   → {DIM}Deteksi ancaman jaringan{RESET}
+  {GOLD}28.{RESET} {BOLD}🛡️  ZUHRI BOTNET HUNTER{RESET}    → {DIM}Deteksi ancaman jaringan{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ⛓️  ZUHRI CHAIN & DID — DECENTRALIZED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}29.{RESET} {BOLD}⛓️  ZUHRI CHAIN{RESET}           → {DIM}Database terdesentralisasi{RESET}
-  {GOLD}30.{RESET} {BOLD}🆔 ZUHRI DID{RESET}             → {DIM}Decentralized identifier{RESET}
+  {GOLD}29.{RESET} {BOLD}⛓️  ZUHRI CHAIN{RESET}            → {DIM}Database terdesentralisasi{RESET}
+  {GOLD}30.{RESET} {BOLD}🆔 ZUHRI DID{RESET}              → {DIM}Decentralized identifier{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🔐 ZUHRI ENKRIPSI — KEAMANAN DATA
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}31.{RESET} {BOLD}🔐 ZUHRI ENKRIPSI{RESET}        → {DIM}Enkripsi + Steganografi + Password{RESET}
+  {GOLD}31.{RESET} {BOLD}🔐 ZUHRI ENKRIPSI{RESET}         → {DIM}Enkripsi + Steganografi + Password{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🌐 ZUHRI DEEP ACCESS — LAPISAN 2 & 3
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}34.{RESET} {BOLD}🌐 ZUHRI DEEP ACCESS{RESET}     → {DIM}Deep Web + Dark Web (ilmiah){RESET}
-  {GOLD}35.{RESET} {BOLD}🌑 ZUHRI DARK-WEB{RESET}        → {DIM}Dark-Web Gateway + panduan{RESET}
+  {GOLD}34.{RESET} {BOLD}🌐 ZUHRI DEEP ACCESS{RESET}      → {DIM}Deep Web + Dark Web (ilmiah){RESET}
+  {GOLD}35.{RESET} {BOLD}🌑 ZUHRI DARK-WEB{RESET}         → {DIM}Dark-Web Gateway + panduan{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🧬 ZUHRI FORMALISM SEARCH — LAPISAN 4
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}36.{RESET} {BOLD}🧬 ZUHRI FORMALISM SEARCH{RESET} → {DIM}Logika + Data + Intuisi{RESET}
-  {GOLD}37.{RESET} {BOLD}🪞 CERMIN BAYANGAN{RESET}        → {DIM}Meta-pencarian tersembunyi{RESET}
+  {GOLD}36.{RESET} {BOLD}🧬 ZUHRI FORMALISM SEARCH{RESET}  → {DIM}Logika + Data + Intuisi{RESET}
+  {GOLD}37.{RESET} {BOLD}🪞 CERMIN BAYANGAN{RESET}         → {DIM}Meta-pencarian tersembunyi{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🌿 ZUHRI TRADISIONAL — OBAT & JAMU
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}38.{RESET} {BOLD}🌿 ZUHRI TRADISIONAL{RESET}      → {DIM}Obat & Jamu Nusantara{RESET}
+  {GOLD}38.{RESET} {BOLD}🌿 ZUHRI TRADISIONAL{RESET}       → {DIM}Obat & Jamu Nusantara{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🌟 ZUHRI CORE — IDENTITAS & KEAMANAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}1.{RESET}  🆔 {BOLD}ZUHRI ID{RESET}              → {DIM}Identitas digital mandiri{RESET}
-  {GOLD}2.{RESET}  🛂 {BOLD}ZUHRI PASSPORT{RESET}        → {DIM}Passport lintas negara{RESET}
-  {GOLD}3.{RESET}  🔐 {BOLD}ZUHRI KRIPTOGRAFI{RESET}     → {DIM}Enkripsi AES-256, Vault{RESET}
-  {GOLD}4.{RESET}  🛡️  {BOLD}ZUHRI SECURITY{RESET}        → {DIM}Keamanan berlapis{RESET}
+  {GOLD}1.{RESET}  🆔 {BOLD}ZUHRI ID{RESET}               → {DIM}Identitas digital mandiri{RESET}
+  {GOLD}2.{RESET}  🛂 {BOLD}ZUHRI PASSPORT{RESET}         → {DIM}Passport lintas negara{RESET}
+  {GOLD}3.{RESET}  🔐 {BOLD}ZUHRI KRIPTOGRAFI{RESET}      → {DIM}Enkripsi AES-256, Vault{RESET}
+  {GOLD}4.{RESET}  🛡️  {BOLD}ZUHRI SECURITY{RESET}         → {DIM}Keamanan berlapis{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   📡 ZUHRI NETWORK — KOMUNIKASI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}5.{RESET}  📡 {BOLD}ZUHRI P2P-MESH{RESET}        → {DIM}Jaringan darurat offline{RESET}
-  {GOLD}6.{RESET}  🔍 {BOLD}ZUHRI MESH-SCAN{RESET}      → {DIM}Cari node di jaringan{RESET}
-  {GOLD}7.{RESET}  🆘 {BOLD}ZUHRI SOS-BEACON{RESET}     → {DIM}Sinyal darurat offline{RESET}
+  {GOLD}5.{RESET}  📡 {BOLD}ZUHRI P2P-MESH{RESET}         → {DIM}Jaringan darurat offline{RESET}
+  {GOLD}6.{RESET}  🔍 {BOLD}ZUHRI MESH-SCAN{RESET}       → {DIM}Cari node di jaringan{RESET}
+  {GOLD}7.{RESET}  🆘 {BOLD}ZUHRI SOS-BEACON{RESET}      → {DIM}Sinyal darurat offline{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🧠 ZUHRI AI — KECERDASAN BUATAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}8.{RESET}  🧠 {BOLD}ZUHRI AI{RESET}              → {DIM}AI pribadi offline{RESET}
-  {GOLD}9.{RESET}  🔍 {BOLD}ZUHRI VISION{RESET}          → {DIM}Deteksi objek kamera{RESET}
-  {GOLD}10.{RESET} 🌍 {BOLD}ZUHRI TRANSLATE{RESET}       → {DIM}Terjemahan offline{RESET}
+  {GOLD}8.{RESET}  🧠 {BOLD}ZUHRI AI{RESET}               → {DIM}AI pribadi offline{RESET}
+  {GOLD}9.{RESET}  🔍 {BOLD}ZUHRI VISION{RESET}           → {DIM}Deteksi objek kamera{RESET}
+  {GOLD}10.{RESET} 🌍 {BOLD}ZUHRI TRANSLATE{RESET}        → {DIM}Terjemahan offline{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🗳️  ZUHRI DEMOKRASI — TATA KELOLA
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}12.{RESET} 🗳️  {BOLD}ZUHRI VOTE{RESET}           → {DIM}Voting digital{RESET}
-  {GOLD}13.{RESET} 📜 {BOLD}ZUHRI CONTRACT{RESET}       → {DIM}Kontrak pintar{RESET}
+  {GOLD}12.{RESET} 🗳️  {BOLD}ZUHRI VOTE{RESET}            → {DIM}Voting digital{RESET}
+  {GOLD}13.{RESET} 📜 {BOLD}ZUHRI CONTRACT{RESET}        → {DIM}Kontrak pintar{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   💰 ZUHRI FINANSIAL — KEUANGAN MANDIRI
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}14.{RESET} 💰 {BOLD}ZUHRI FINANSIAL{RESET}      → {DIM}Keuangan mandiri{RESET}
-  {GOLD}15.{RESET} 🪙 {BOLD}ZUHRI WALLET{RESET}         → {DIM}Dompet crypto offline{RESET}
-  {GOLD}44.{RESET} 💰 {BOLD}ZUHRI KRIPTO{RESET}         → {DIM}Quad-Core Bot + Exchange{RESET}
+  {GOLD}14.{RESET} 💰 {BOLD}ZUHRI FINANSIAL{RESET}       → {DIM}Keuangan mandiri{RESET}
+  {GOLD}15.{RESET} 🪙 {BOLD}ZUHRI WALLET{RESET}          → {DIM}Dompet crypto offline{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   📚 ZUHRI EDU & LIBRARY — PENGETAHUAN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}16.{RESET} 🎓 {BOLD}ZUHRI EDU{RESET}            → {DIM}Kursus & sertifikat{RESET}
-  {GOLD}17.{RESET} 📚 {BOLD}ZUHRI LIBRARY{RESET}        → {DIM}Perpustakaan offline{RESET}
-  {GOLD}21.{RESET} 🧬 {BOLD}ZUHRI KURIKULUM K-8.0{RESET} → {DIM}30 kurikulum komprehensif{RESET}
+  {GOLD}16.{RESET} 🎓 {BOLD}ZUHRI EDU{RESET}             → {DIM}Kursus & sertifikat{RESET}
+  {GOLD}17.{RESET} 📚 {BOLD}ZUHRI LIBRARY{RESET}         → {DIM}Perpustakaan offline{RESET}
+  {GOLD}21.{RESET} 🧬 {BOLD}ZUHRI KURIKULUM K-8.0{RESET}  → {DIM}30 kurikulum komprehensif{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ⚙️  ZUHRI OS — SISTEM
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}18.{RESET} 💻 {BOLD}ZUHRI OS{RESET}             → {DIM}Sistem lengkap{RESET}
-  {GOLD}19.{RESET} 💻 {BOLD}ZUHRI HEALTH{RESET}         → {DIM}Cek RAM & storage{RESET}
-  {GOLD}20.{RESET} 💾 {BOLD}ZUHRI BACKUP{RESET}         → {DIM}Backup konfigurasi{RESET}
-  {GOLD}23.{RESET} 📖 {BOLD}Panduan{RESET}              → {DIM}Buka onboarding{RESET}
-  {GOLD}32.{RESET} 🚦 {BOLD}ZUHRI AUTO-ROUTING{RESET}    → {DIM}Router otomatis{RESET}
+  {GOLD}18.{RESET} 💻 {BOLD}ZUHRI OS{RESET}              → {DIM}Sistem lengkap{RESET}
+  {GOLD}19.{RESET} 💻 {BOLD}ZUHRI HEALTH{RESET}          → {DIM}Cek RAM & storage{RESET}
+  {GOLD}20.{RESET} 💾 {BOLD}ZUHRI BACKUP{RESET}          → {DIM}Backup konfigurasi{RESET}
+  {GOLD}23.{RESET} 📖 {BOLD}Panduan{RESET}               → {DIM}Buka onboarding{RESET}
+  {GOLD}32.{RESET} 🚦 {BOLD}ZUHRI AUTO-ROUTING{RESET}     → {DIM}Router otomatis{RESET}
 
 {BOLD}{MAGENTA}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   📚 DOKUMENTASI EKOSISTEM
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{RESET}
 
-  {GOLD}33.{RESET} {BOLD}📚 ZUHRI DOCS{RESET}            → {DIM}Sejarah • Cara Pakai • Visi • Roadmap{RESET}
+  {GOLD}33.{RESET} {BOLD}📚 ZUHRI DOCS{RESET}             → {DIM}Sejarah • Cara Pakai • Visi • Roadmap{RESET}
   {GOLD}0.{RESET}  🚪 Keluar
 
 """)
@@ -241,7 +232,7 @@ def main():
         print_operator()
         print_menu()
         try:
-            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-44): {RESET}").strip()
+            c = input(f"{GOLD}  📡 Pilih Ekosistem (0-46): {RESET}").strip()
             if c == "0":
                 print(f"\n{GOLD}👋 Sampai jumpa, Operator!{RESET}\n"); break
             elif c == "1": run("python ~/zuhri_os/id/zuhri_id.py show")
@@ -283,10 +274,12 @@ def main():
             elif c == "38": run("python ~/zuhri_os/tradisional/zuhri_tradisional.py")
             elif c == "39": run("python ~/zuhri_os/echocore/zuhri_echocore.py")
             elif c == "40": run("python ~/zuhri_os/torshield/zuhri_torshield.py")
-            elif c == "41": run("python ~/zuhri_os/social/zuhri_social.py")
-            elif c == "42": run("python ~/zuhri_os/web3hub/zuhri_web3.py")
-            elif c == "43": run("python ~/zuhri_os/web4/zuhri_web4.py")
-            elif c == "44": run("python ~/zuhri_os/kripto/zuhri_kripto.py")
+            elif c == "41": run("python ~/zuhri_os/art/zuhri_art.py")
+            elif c == "42": run("python ~/zuhri_os/social/zuhri_social.py")
+            elif c == "43": run("python ~/zuhri_os/gmail/zuhri_gmail.py")
+            elif c == "44": run("python ~/zuhri_os/med/zuhri_med.py")
+            elif c == "45": run("python ~/zuhri_os/weather/zuhri_weather.py")
+            elif c == "46": run("python ~/zuhri_os/maps/zuhri_maps.py")
             else: print(f"{RED}  ❌ Pilihan tidak valid{RESET}")
             if c != "0":
                 input(f"\n{DIM}  Tekan Enter untuk kembali...{RESET}")
